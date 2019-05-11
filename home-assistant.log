@@ -1,0 +1,2 @@
+2019-05-11 10:18:05 WARNING (MainThread) [homeassistant.components.http] Configuring api_password via the http component has been deprecated. Use the legacy api password auth provider instead. For instructions, see https://www.home-assistant.io/docs/authentication/providers/#legacy-api-password
+2019-05-11 10:18:05 WARNING (MainThread) [homeassistant.components.http.auth] legacy_api_password support has been enabled.

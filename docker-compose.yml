@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+    homeassistant:
+        build: .
+        container_name: home-assistant
+        # image: homeassistant/home-assistant
+        # environment:
+        #     - "TZ=America/New_York"
+        ports:
+            - 8123:8123
+        volumes:
+            - ".:/config"
+        restart: always

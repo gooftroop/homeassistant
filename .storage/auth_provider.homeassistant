@@ -1,0 +1,12 @@
+{
+    "data": {
+        "users": [
+            {
+                "password": "JDJiJDEyJDd5aDZVSkN1bVE0QU9PSC54OHFPNU8uUFJacGQvWmVKVGUvb1k5NWF1ZWgzbWVKNWNjd1Zh",
+                "username": "gooftroop"
+            }
+        ]
+    },
+    "key": "auth_provider.homeassistant",
+    "version": 1
+}

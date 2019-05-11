@@ -1,0 +1,83 @@
+{
+    "data": {
+        "credentials": [
+            {
+                "auth_provider_id": null,
+                "auth_provider_type": "homeassistant",
+                "data": {
+                    "username": "gooftroop"
+                },
+                "id": "0c4d6318d5f04f859a53717119dc95d9",
+                "user_id": "b2ad27bfaca2470dbcc199e233b65947"
+            }
+        ],
+        "groups": [
+            {
+                "id": "system-admin",
+                "name": "Administrators"
+            },
+            {
+                "id": "system-users",
+                "name": "Users"
+            },
+            {
+                "id": "system-read-only",
+                "name": "Read Only"
+            }
+        ],
+        "refresh_tokens": [
+            {
+                "access_token_expiration": 1800.0,
+                "client_icon": null,
+                "client_id": "http://localhost:8123/",
+                "client_name": null,
+                "created_at": "2019-05-07T00:14:37.738630+00:00",
+                "id": "e53989376fa1456383b05b69a8cee690",
+                "jwt_key": "f42816008e9babfd73d1d9eeb33c46035aefb1eb159759552abe8fd2682d14d8099abd41d078ac6cd473271e181b8943634add63e08fc9494925a948b9e99ed9",
+                "last_used_at": "2019-05-11T14:18:07.725575+00:00",
+                "last_used_ip": "172.19.0.1",
+                "token": "c572f40eca0d7d82b4d5094531bc5c7ff7a2894c61a971b34fd7ae22d69864e9a5117aae9b4b76395a3299eeb42e929b678ea0067d41770b95c8915dcc973f0b",
+                "token_type": "normal",
+                "user_id": "b2ad27bfaca2470dbcc199e233b65947"
+            },
+            {
+                "access_token_expiration": 315360000.0,
+                "client_icon": null,
+                "client_id": null,
+                "client_name": "bwebb",
+                "created_at": "2019-05-11T12:35:16.545847+00:00",
+                "id": "34d79e74f1104e7893f6bdee7cf99684",
+                "jwt_key": "ae41045913590e22bce8022a3d1c7348ffc03585a6053599ef6c76329d57aae5a1afc80f76762a26645451ec6694f1092491693ece791a88f114f5df697eac54",
+                "last_used_at": "2019-05-11T12:35:16.546033+00:00",
+                "last_used_ip": null,
+                "token": "d48470bf6b65af8595c3ca333b0d4d0fd86bbc0fcc628117f7d6e2303917f6c9ee1c3fc5b7f687ff2def8b21a43e0a224957a9c2ea0d2f32ec62820cc9513301",
+                "token_type": "long_lived_access_token",
+                "user_id": "b2ad27bfaca2470dbcc199e233b65947"
+            }
+        ],
+        "users": [
+            {
+                "group_ids": [
+                    "system-admin"
+                ],
+                "id": "4ab0551c1bd94da2822c39d4b988f7f1",
+                "is_active": true,
+                "is_owner": false,
+                "name": "Home Assistant Cloud",
+                "system_generated": true
+            },
+            {
+                "group_ids": [
+                    "system-admin"
+                ],
+                "id": "b2ad27bfaca2470dbcc199e233b65947",
+                "is_active": true,
+                "is_owner": true,
+                "name": "Brandon Webb",
+                "system_generated": false
+            }
+        ]
+    },
+    "key": "auth",
+    "version": 1
+}
