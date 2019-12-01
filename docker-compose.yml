@@ -38,4 +38,4 @@ services:
         ports:
             - 3443:443
             - 3080:80 # optional
-        restart: unless-stopped
+        restart: always
