@@ -1,0 +1,635 @@
+#################################################################
+## Doorbell Automations
+#################################################################
+
+        ##########################################################
+        ## Turn On Front Porch when Door Bell Rings
+        ##########################################################
+
+- alias: Doorbell - Turn On Front Porch when Rung
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.front_porch
+      data:
+        brightness_pct: 100
+
+        ##########################################################
+        ## Reset Front Porch Brightness After Doorbell Rings
+        ##########################################################
+
+- alias: Doorbell - Reset Front Porch Brightness After Ring
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.front_porch
+      data:
+        brightness_pct: 40
+        transition: 300
+
+        ##########################################################
+        ## Turn On Front Porch when Motion Detected
+        ##########################################################
+
+- alias: Doorbell - Turn On Front Porch when Motion Detected
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.front_porch
+      data:
+        brightness_pct: 100
+
+        ##########################################################
+        ## Reset Front Porch Brightness After Motion Detected
+        ##########################################################
+
+- alias: Doorbell - Reset Front Porch Brightness After Motion Detected
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
+      state: 'off'
+    - condition: state
+      entity_id: light.front_porch
+      state: 'on'
+      for:
+        hours: 0
+        minutes: 30
+        seconds: 0
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.front_porch
+      data:
+        brightness_pct: 40
+        transition: 300
+
+        ##########################################################
+        ## Turn On Lights when Door Bell Rings and Away
+        ##########################################################
+
+- alias: Doorbell - Turn On Lights when Ring and Away
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.living_room_lamps
+        - light.office_lamp
+        - light.closet_lamp
+        - light.kitchen_sink
+        - light.back_door
+        - light.garage_light
+      data:
+        brightness_pct: 100
+        color_temp: 447
+
+        ##########################################################
+        ## Turn Off Lights After Door Bell Rings and Away
+        ##########################################################
+
+- alias: Doorbell - Turn Off Lights After Ring and Away
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.living_room_lights
+        - light.office_lamp
+        - light.closet_lamp
+      data:
+        transition: 900
+    - service: light.turn_off
+      entity_id:
+        - light.kitchen_sink
+    - service: light.turn_on
+      entity_id:
+        - light.back_door
+        - light.garage_light
+      data:
+        brightness_pct: 1
+
+        ##########################################################
+        ## Turn On Lights when Motion Detected and Away
+        ##########################################################
+
+- alias: Doorbell - Turn On Lights when Motion Detected and Away
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_motion
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.living_room_lamps
+        - light.office_lamp
+        - light.closet_lamp
+        - light.kitchen_sink
+        - light.back_door
+        - light.garage_light
+      data:
+        brightness_pct: 100
+        color_temp: 447
+
+        ##########################################################
+        ## Turn Off Lights After Motion Detected and Away
+        ##########################################################
+
+- alias: Doorbell - Turn Off Lights After Motion Detected and Away
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_motion
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 1
+        minutes: 0
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
+      state: 'off'
+    - condition: state
+      entity_id: group.household
+      state: 'not_home'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.living_room_lights
+        - light.office_lamp
+        - light.closet_lamp
+      data:
+        transition: 900
+    - service: light.turn_off
+      entity_id:
+        - light.kitchen_sink
+    - service: light.turn_on
+      entity_id:
+        - light.back_door
+        - light.garage_light
+      data:
+        brightness_pct: 1
+
+        ##########################################################
+        ## Front Door Bell Bathroom Audio Notification
+        ##########################################################
+
+- alias: Doorbell - Front Door Bell Bathroom Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.bathroom_occupancy
+      state: 'on'
+
+  action:
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          master: 'media_player.sonos_bathroom'
+          where: 'media_player.sonos_bathroom'
+          volume: '.6'
+          what: 'Someone is at the Front Door'
+
+        ##########################################################
+        ## Front Door Bell Basement Audio Notification
+        ##########################################################
+
+- alias: Doorbell - Front Doorbell Basement Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
+      state: 'off'
+    - condition: state
+      entity_id: group.basement_occupancy
+      state: 'on'
+
+  action:
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          master: 'media_player.sonos_basement'
+          where: 'media_player.sonos_basement'
+          volume: '.6'
+          what: 'Someone is at the Front Door'
+
+        ##########################################################
+        ## Front Door Bell Kitchen Audio Notification
+        ##########################################################
+
+- alias: Doorbell - Front Doorbell Kitchen Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_notifications
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.kitchen_occupancy
+      state: 'on'
+
+  action:
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          master: 'media_player.sonos_kitchen'
+          where: 'media_player.sonos_kitchen'
+          volume: '.6'
+          what: 'Someone is at the Front Door'
+
+        ##########################################################
+        ## Front Door Bell Office Audio Notification
+        ##########################################################
+
+- alias: Doorbell - Front Doorbell Office Notification
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      from: 'off'
+      to: 'on'
+
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: group.household
+        state: 'home'
+      - condition: state
+        entity_id: input_boolean.disable_notifications
+        state: 'off'
+      - condition: state
+        entity_id: input_boolean.disable_doorbell
+        state: 'off'
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: binary_sensor.office_occupancy
+            state: 'on'
+          - condition: state
+            entity_id: binary_sensor.USER2_office_occupancy
+            state: 'on'
+
+  action:
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          master: 'media_player.sonos_USER1s_office'
+          where: 'media_player.sonos_USER1s_office, media_player.sonos_USER2s_office'
+          volume: '.6'
+          what: 'Someone is at the Front Door'
+
+        ##########################################################
+        ## Front Door Camera TV when Doorbell Rings
+        ##########################################################
+
+- alias: Doorbell - Front Door Camera TV when Doorbell Rings
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
+      state: 'off'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: input_select.remote
+        state: 'Watch TV'
+      - condition: state
+        entity_id: input_select.remote
+        state: 'Play Sonos'
+
+  action:
+    - service: camera.play_stream
+      data:
+        entity_id: camera.front_porch
+        media_player: media_player.living_room_apple_tv
+
+        ##########################################################
+        ## Front Door Camera TV when Doorbell Rings and Motion Detected
+        ##########################################################
+
+- alias: Doorbell - Front Door Camera TV when Doorbell Rings and Motion Detected
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
+      state: 'off'
+    - condition: state
+      entity_id: input_select.remote
+      state: 'PowerOff'
+    - condition: time
+      after: '08:00'
+      before: '22:00'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: binary_sensor.living_room_occupancy
+        state: 'on'
+      - condition: state
+        entity_id: binary_sensor.living_room_motion
+        state: 'on'
+
+  action:
+    - service: camera.play_stream
+      data:
+        entity_id: camera.front_porch
+        media_player: media_player.living_room_apple_tv
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.remote
+        option: "Watch TV"
+    - delay: '00:02:00'
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.remote
+        option: "PowerOff"
+
+        ##########################################################
+        ## Camera Office TV when Doorbell Rings TV Off
+        ##########################################################
+
+- alias: Doorbell - Camera Office TV when Doorbell Rings TV Off
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
+      state: 'off'
+    - condition: time
+      after: '08:00'
+      before: '23:00'
+    - condition: state
+      entity_id: device_tracker.USER1s_iphone
+      state: 'home'
+    - condition: state
+      entity_id: binary_sensor.office_occupancy
+      state: 'on'
+    - condition: state
+      entity_id: input_select.office_remote
+      state: 'PowerOff'
+
+  action:
+    - service: camera.play_stream
+      data:
+        entity_id: camera.front_porch
+        media_player: media_player.USER1s_office_apple_tv
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.office_remote
+        option: "Watch TV"
+    - delay: '00:05:00'
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.office_remote
+        option: "PowerOff"
+
+        ##########################################################
+        ## Camera Office TV when Doorbell Rings TV On
+        ##########################################################
+
+- alias: Doorbell - Camera Office TV when Doorbell Rings TV On
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
+      state: 'off'
+    - condition: time
+      after: '08:00'
+      before: '03:30'
+    - condition: state
+      entity_id: device_tracker.USER1s_iphone
+      state: 'home'
+    - condition: state
+      entity_id: binary_sensor.office_occupancy
+      state: 'on'
+    - condition: state
+      entity_id: input_select.office_remote
+      state: 'WatchTV'
+
+  action:
+    - service: camera.play_stream
+      data:
+        entity_id: camera.front_porch
+        media_player: media_player.USER1s_office_apple_tv
+
+        ##########################################################
+        ## Front Door Camera Bedroom TV when Doorbell Rings
+        ##########################################################
+
+- alias: Doorbell - Front Door Camera Bedroom TV when Doorbell Rings
+
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_ding
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: group.household
+      state: 'home'
+    - condition: state
+      entity_id: input_boolean.disable_doorbell
+      state: 'off'
+    - condition: state
+      entity_id: input_select.bedroom_remote
+      state: 'Watch TV'
+    - condition: time
+      after: '08:00'
+      before: '21:00'
+
+  action:
+    - service: camera.play_stream
+      data:
+        entity_id: camera.front_porch
+        media_player: media_player.bedroom_apple_tv

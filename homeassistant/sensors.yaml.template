@@ -1,0 +1,524 @@
+#################################################################
+## Sensors
+#################################################################
+
+        ##########################################################
+        ## Moon
+        ##########################################################
+
+  - platform: moon
+
+        ##########################################################
+        ## Date and Time
+        ##########################################################
+
+  - platform: time_date
+    display_options:
+      - 'date_time'
+
+        ##########################################################
+        ## Ring Doorbell
+        ##########################################################
+
+  - platform: ring
+    monitored_conditions:
+      - battery
+      - last_activity
+      - last_ding
+      - last_motion
+      - volume
+
+        ##########################################################
+        ## NAS
+        ##########################################################
+
+  - platform: qnap
+    host: REDACTED.101
+    port: 443
+    username: !secret qnap_username
+    password: !secret qnap_password
+    ssl: true
+    verify_ssl: false
+    monitored_conditions:
+      - status
+      - memory_percent_used
+      - system_temp
+      - cpu_usage
+      - network_link_status
+      - volume_size_free
+      - volume_size_used
+      - drive_smart_status
+      - volume_percentage_used
+
+        ##########################################################
+        ## UPS
+        ##########################################################
+
+  - platform: nut
+    name: UPS
+    host: REDACTED.101
+    port: REDACTED
+    alias: REDACTED
+    username: !secret nut_username
+    password: !secret nut_password
+    resources:
+      - ups.status.display
+      - battery.charge
+      - battery.runtime
+      - ups.load
+      - input.voltage
+
+        ##########################################################
+        ## Uptime
+        ##########################################################
+
+  - platform: uptime
+    unit_of_measurement: days
+
+        ##########################################################
+        ## Plex
+        ##########################################################
+
+  - platform: plex
+    name: !secret plex_name
+    host: !secret plex_host
+    port: REDACTED
+    ssl: true
+    username: !secret plex_username
+    password: !secret plex_password
+    server: !secret plex_server
+
+        ##########################################################
+        ## Pi Hole
+        ##########################################################
+
+  - platform: pi_hole
+    host: REDACTED.4
+    name: pihole 1
+    monitored_conditions:
+      - ads_blocked_today
+      - ads_percentage_today
+      - dns_queries_today
+  - platform: pi_hole
+    host: REDACTED.5
+    name: pihole 2
+    monitored_conditions:
+      - ads_blocked_today
+      - ads_percentage_today
+      - dns_queries_today
+
+        ##########################################################
+        ## Waze Travel Time
+        ##########################################################
+
+  - platform: waze_travel_time
+    name: USER2 To Home
+    origin: device_tracker.USER2s_iphone
+    destination: zone.home
+    region: 'US'
+  - platform: waze_travel_time
+    name: USER1 To Home
+    origin: device_tracker.REDACTEDs_iphone
+    destination: zone.home
+    region: 'US'
+  - platform: waze_travel_time
+    name: USER2 To REDACTED
+    origin: device_tracker.USER2s_iphone
+    destination: zone.REDACTED
+    region: 'US'
+
+        ##########################################################
+        ## UPS
+        ##########################################################
+
+  - platform: template
+    sensors:
+      ups_battery_runtime_mins:
+        friendly_name: "UPS Battery Runtime"
+        unit_of_measurement: 'minutes'
+        value_template: "{{ states('sensor.ups_battery_runtime')|float / 60 }}"
+
+        ##########################################################
+        ## Washing Machine
+        ##########################################################
+
+  - platform: template
+    sensors:
+      washing_machine_current_power:
+        value_template: '{{ states.switch.washing_machine.attributes.current_power_w }}'
+  - platform: template
+    sensors:
+      washing_machine_status:
+        value_template: >-
+          {%- if states('sensor.washing_machine_current_power') | int >= 3 %}
+            running
+          {% else %}
+            not running
+          {% endif %}
+        friendly_name: 'Washing Machine Status'
+
+        ##########################################################
+        ## Battery Levels
+        ##########################################################
+
+  - platform: template
+    sensors:
+      back_door_sensor_batt:
+        value_template: '{{ states.binary_sensor.back_door_opened.attributes.battery_level }}'
+        friendly_name: 'Back Door Sensor'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      basement_door_sensor_batt:
+        value_template: '{{ states.binary_sensor.basement_door_opened.attributes.battery_level }}'
+        friendly_name: 'Basement Door Sensor'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      front_door_sensor_batt:
+        value_template: '{{ states.binary_sensor.front_door_opened.attributes.battery_level }}'
+        friendly_name: 'Front Door Sensor'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      siren_batt:
+        value_template: '{{ states.switch.siren.attributes.battery_level }}'
+        friendly_name: 'Alarm Siren'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      front_door_lock_batt:
+        value_template: '{{ states.lock.front_door.attributes.battery_level }}'
+        friendly_name: 'Front Door Lock'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      back_door_lock_batt:
+        value_template: '{{ states.lock.back_door.attributes.battery_level }}'
+        friendly_name: 'Back Door Lock'
+        device_class: battery
+        unit_of_measurement: '%'
+  - platform: template
+    sensors:
+      basement_door_lock_batt:
+        value_template: '{{ states.lock.basement_door.attributes.battery_level }}'
+        friendly_name: 'Basement Door Lock'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      basement_drain_water_sensor_batt:
+        value_template: '{{ states.binary_sensor.basement_drain_water_sensor_liquid_detected.attributes.battery_level }}'
+        friendly_name: 'Basement Drain Water Sensor'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      sump_pump_water_sensor_batt:
+        value_template: '{{ states.binary_sensor.sump_pump_water_sensor_liquid_detected.attributes.battery_level }}'
+        friendly_name: 'Sump Pump Water Sensor'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      downstairs_roomba_batt:
+        value_template: '{{ states.vacuum.downstairs_roomba.attributes.battery_level }}'
+        friendly_name: 'Downstairs Roomba'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      upstairs_roomba_batt:
+        value_template: '{{ states.vacuum.upstairs_roomba.attributes.battery_level }}'
+        friendly_name: 'Upstairs Roomba'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      living_room_motion_batt:
+        value_template: '{{ states.binary_sensor.living_room_motion.attributes.battery_level }}'
+        friendly_name: 'Living Room Motion Sensor'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      basement_motion_batt:
+        value_template: '{{ states.binary_sensor.basement_motion.attributes.battery_level }}'
+        friendly_name: 'Basement Motion Sensor'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      kitchen_motion_batt:
+        value_template: '{{ states.binary_sensor.kitchen_motion.attributes.battery_level }}'
+        friendly_name: 'Kitchen Motion Sensor'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      USER2s_closet_motion_batt:
+        value_template: '{{ states.binary_sensor.USER2_bedroom_closet_motion.attributes.battery_level }}'
+        friendly_name: "USER2's Closet Motion Sensor"
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      dining_room_motion_batt:
+        value_template: '{{ states.binary_sensor.dining_room_motion.attributes.battery_level }}'
+        friendly_name: 'Dining Room Motion Sensor'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      stairs_motion_batt:
+        value_template: '{{ states.binary_sensor.stairs_motion.attributes.battery_level }}'
+        friendly_name: 'Stairs Motion Sensor'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      kitchen_sink_water_sensor_batt:
+        value_template: '{{ states.binary_sensor.kitchen_sink_water_sensor.attributes.battery_level }}'
+        friendly_name: 'Kitchen Sink Water Sensor'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      bathroom_sink_water_sensor_batt:
+        value_template: '{{ states.binary_sensor.bathroom_sink_water_sensor.attributes.battery_level }}'
+        friendly_name: 'Bathroom Sink Water Sensor'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      basement_door_water_sensor_batt:
+        value_template: '{{ states.binary_sensor.basement_door_water_sensor.attributes.battery_level }}'
+        friendly_name: 'Basement Door Water Sensor'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      upstairs_bathroom_water_sensor_batt:
+        value_template: '{{ states.binary_sensor.upstairs_bathrooom_water_sensor.attributes.battery_level }}'
+        friendly_name: 'Upstairs Bathroom Water Sensor'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      utility_sink_water_sensor_batt:
+        value_template: '{{ states.binary_sensor.utility_sink_water_sensor.attributes.battery_level }}'
+        friendly_name: 'Utility Sink Water Sensor'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      water_heater_water_sensor_batt:
+        value_template: '{{ states.binary_sensor.water_heater_water_sensor.attributes.battery_level }}'
+        friendly_name: 'Water Heater Water Sensor'
+        unit_of_measurement: '%'
+        device_class: battery
+  - platform: template
+    sensors:
+      washing_machine_water_sensor_batt:
+        value_template: '{{ states.binary_sensor.washing_machine_water_sensor.attributes.battery_level }}'
+        friendly_name: 'Washing Machine Water Sensor'
+        unit_of_measurement: '%'
+        device_class: battery
+
+        ##########################################################
+        ## Harmony Remote
+        ##########################################################
+
+  - platform: template
+    sensors:
+      media_center:
+        value_template: '{{ states.remote.media_center.attributes.current_activity }}'
+        friendly_name: 'Media Center'
+
+        ##########################################################
+        ## Calendars
+        ##########################################################
+
+  - platform: template
+    sensors:
+      holidays_calendar:
+        friendly_name: 'Holiday'
+        value_template: '{{ states.calendar.holidays_in_united_states.attributes.message }}'
+
+        ##########################################################
+        ## Device Status
+        ##########################################################
+
+  - platform: template
+    sensors:
+      garage_door_opener_status:
+        friendly_name: "Garage Door Opener"
+        value_template: >-
+          {% if is_state('device_tracker.garagedooropener', 'home') %}
+            Connected
+          {% else %}
+            Disconnected
+          {% endif %}
+  - platform: template
+    sensors:
+      hue_hub_status:
+        friendly_name: "Hue Hub"
+        value_template: >-
+          {% if is_state('device_tracker.hue_hub', 'home') %}
+            Connected
+          {% else %}
+            Disconnected
+          {% endif %}
+  - platform: template
+    sensors:
+      att_router_status:
+        friendly_name: "at&t Router Gateway"
+        value_template: >-
+          {% if is_state('device_tracker.attrouter', 'home') %}
+            Connected
+          {% else %}
+            Disconnected
+          {% endif %}
+  - platform: template
+    sensors:
+      lutron_smart_bridge_status:
+        friendly_name: "Lutron Smart Bridge"
+        value_template: >-
+          {% if is_state('device_tracker.lutron_smart_bridge', 'home') %}
+            Connected
+          {% else %}
+            Disconnected
+          {% endif %}
+  - platform: template
+    sensors:
+      vera_plus_status:
+        friendly_name: "Vera Plus"
+        value_template: >-
+          {% if is_state('device_tracker.ver_plus_hub', 'home') %}
+            Connected
+          {% else %}
+            Disconnected
+          {% endif %}
+
+        ##########################################################
+        ## Thermostat
+        ##########################################################
+
+  - platform: template
+    sensors:
+      thermostat_climate_mode:
+        friendly_name: 'Thermostat Mode'
+        value_template: >-
+          {% if is_state_attr('climate.main_floor', 'away_mode', 'on') %}
+            Away
+          {% elif is_state_attr('climate.main_floor', 'hold_mode', 'smart2') %}
+            Upstairs
+          {% elif is_state_attr('climate.main_floor', 'hold_mode', 'smart3') %}
+            Guest
+          {% elif is_state_attr('climate.main_floor', 'hold_mode', 'smart4') %}
+            Fireplace
+          {% elif is_state_attr('climate.main_floor', 'hold_mode', 'temp') %}
+            Temperature Hold
+          {% elif is_state_attr('climate.main_floor', 'climate_mode', 'Sleep') %}
+            Sleep
+          {% elif is_state_attr('climate.main_floor', 'hold_mode', 'sleep') %}
+            Sleep
+          {% elif is_state_attr('climate.main_floor', 'hold_mode', 'away') %}
+            Away
+          {% elif is_state_attr('climate.main_floor', 'hold_mode', 'vacation') %}
+            Vacation
+          {% elif is_state_attr('climate.main_floor', 'climate_mode', 'Away') %}
+            Away
+          {% else %}
+            Home
+          {% endif %}
+
+  - platform: template
+    sensors:
+      hvac_status:
+        friendly_name: 'HVAC Status'
+        value_template: >-
+          {% if is_state_attr('climate.main_floor', 'equipment_running', 'compCool1,fan') %}
+            Cool (Stage 1)
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'compCool2,fan') %}
+            Cool (Stage 2)
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'compCool1,dehumidifier,fan') %}
+            Cool (Stage 1) + Dehumidifier
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'compCool2,dehumidifier,fan') %}
+            Cool (Stage 2) + Dehumidifier
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'auxHeat1,fan') %}
+            Heat (Stage 1)
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'auxHeat2,fan') %}
+            Heat (Stage 2)
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'auxHeat1,humidifier,fan') %}
+            Heat (Stage 1) + Humidifier
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'auxHeat2,humidifier,fan') %}
+            Heat (Stage 2) + Humidifier
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'fan') %}
+            Fan
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'dehumidifier,fan') %}
+            Fan
+          {% else %}
+            Idle
+          {% endif %}
+        icon_template: >-
+          {% if is_state_attr('climate.main_floor', 'equipment_running', 'compCool1,fan') %}
+            mdi:snowflake
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'compCool2,fan') %}
+            mdi:snowflake
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'compCool1,dehumidifier,fan') %}
+            mdi:water-off
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'compCool2,dehumidifier,fan') %}
+            mdi:water-off
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'auxHeat1,fan') %}
+            mdi:fire
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'auxHeat2,fan') %}
+            mdi:fire
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'auxHeat1,humidifier,fan') %}
+            mdi:water
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'auxHeat2,humidifier,fan') %}
+            mdi:water
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'fan') %}
+            mdi:fan
+          {% elif is_state_attr('climate.main_floor', 'equipment_running', 'dehumidifier,fan') %}
+            mdi:fan
+          {% else %}
+            mdi:fan-off
+          {% endif %}
+
+        ##########################################################
+        ## Pihole Status
+        ##########################################################
+
+  - platform: command_line
+    name: PiHole 1 Status
+    command: curl -X GET 'http://REDACTED.4/REDACTED/api.php?status'
+    value_template: "{{ value_json.status == 'enabled' }}"
+  - platform: command_line
+    name: PiHole 2 Status
+    command: curl -X GET 'http://REDACTED.5/REDACTED/api.php?status'
+    value_template: "{{ value_json.status == 'enabled' }}"
+
+        ##########################################################
+        ## Weather
+        ##########################################################
+
+  - platform: template
+    sensors:
+      REDACTED_humidity:
+        value_template: '{{ states.weather.REDACTED.attributes.humidity }}'
+        friendly_name: 'Outdoor Humidity'
+        device_class: humidity
+        unit_of_measurement: '%'
+  - platform: template
+    sensors:
+      REDACTED_temperature:
+        value_template: '{{ states.weather.REDACTED.attributes.temperature }}'
+        friendly_name: 'Outdoor Temperature'
+        device_class: temperature
+        unit_of_measurement: '°F'

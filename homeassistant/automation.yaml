@@ -1,0 +1,71 @@
+# automation:
+# Pico state codes
+# - On: 1
+# - Up: 8
+# - Fav: 2
+# - Down: 16
+# - Off: 4
+
+# Turn on the living room lights
+- id: living_room_pico_on
+  alias: Living Room Pico on
+  initial_state: True
+  hide_entity: False
+  trigger:
+    - platform: state
+      entity_id: sensor.living_room_pico
+      to: '1'
+  condition:
+    condition: state
+    entity_id: group.living_room_lights
+    state: 'off'
+  action:
+    service: light.turn_on
+    entity_id: group.living_room_lights
+
+# Turn off the bedroom lights
+- id: living_room_pico_off
+  alias: Living Room Pico off
+  initial_state: True
+  hide_entity: False
+  trigger:
+    - platform: state
+      entity_id: sensor.living_room_pico
+      to: '4'
+  condition:
+    condition: state
+    entity_id: group.living_room_lights
+    state: 'on'
+  action:
+    service: light.turn_off
+    entity_id: group.living_room_lights
+
+# Brighten the bedroom lights
+- id: living_room_pico_up
+  alias: Living Room Pico up
+  initial_state: True
+  hide_entity: False
+  trigger:
+    - platform: state
+      entity_id: sensor.living_room_pico
+      to: '8'
+  action:
+    service: light.turn_on
+    entity_id: group.living_room_lights
+    data_template:
+      brightness: "{{ [255, state_attr('light.living_room', 'brightness')|int(0) + 51]|min }}"
+
+# Dim the bedroom lights
+- id: living_room_pico_down
+  alias: Living Room Pico down
+  initial_state: True
+  hide_entity: False
+  trigger:
+    - platform: state
+      entity_id: sensor.living_room_pico
+      to: '16'
+  action:
+    service: light.turn_on
+    entity_id: group.living_room_lights
+    data_template:
+      brightness: "{{ [0, state_attr('light.living_room', 'brightness')|int(0) - 51]|max }}"

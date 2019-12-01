@@ -1,0 +1,92 @@
+#################################################################
+## Scripts
+#################################################################
+
+        ##########################################################
+        ## Harmony Remote
+        ##########################################################
+
+input_select_harmony:
+  alias: "Start Remote activity from input select"
+  sequence:
+      service: remote.turn_on
+      data_template:
+        entity_id: remote.media_center
+        activity: >
+          {% if is_state("input_select.remote", "PowerOff") %}
+              -1
+          {% elif is_state("input_select.remote", "Watch TV") %}
+              22106204
+          {% elif is_state("input_select.remote", "Watch Over the Air TV") %}
+              22109519
+          {% elif is_state("input_select.remote", "Play Xbox One") %}
+              22107236
+          {% elif is_state("input_select.remote", "Play Nintendo Switch") %}
+              23666878
+          {% elif is_state("input_select.remote", "Play Wii U") %}
+              22107302
+          {% elif is_state("input_select.remote", "Play Sonos") %}
+              22815026
+          {% endif %}
+
+input_select_bedroom_harmony:
+  alias: "Start Bedroom Remote activity from input select"
+  sequence:
+      service: remote.turn_on
+      data_template:
+        entity_id: remote.bedroom_tv
+        activity: >
+          {% if is_state("input_select.bedroom_remote", "PowerOff") %}
+              -1
+          {% elif is_state("input_select.bedroom_remote", "Watch TV") %}
+              31071991
+          {% endif %}
+
+input_select_office_harmony:
+  alias: "Start Office Remote activity from input select"
+  sequence:
+      service: remote.turn_on
+      data_template:
+        entity_id: remote.office_tv
+        activity: >
+          {% if is_state("input_select.office_remote", "PowerOff") %}
+              -1
+          {% elif is_state("input_select.office_remote", "Watch TV") %}
+              33663475
+          {% elif is_state("input_select.office_remote", "Play Xbox One") %}
+              36216391
+          {% endif %}
+
+        ##########################################################
+        ## Sonos Text to Speech
+        ##########################################################
+
+say:
+  alias: Sonos TTS
+  sequence:
+    - service: sonos.snapshot
+      data_template:
+        with_group: yes
+    - delay: '00:00:03'
+    - service: sonos.unjoin
+      data_template:
+        entity_id: "{{ where }}"
+    - delay: '00:00:01'
+    - service: sonos.join
+      data_template:
+        master: "{{ master }}"
+        entity_id: "{{ where }}"
+    - delay: '00:00:01'
+    - service: media_player.volume_set
+      data_template:
+        entity_id: "{{ where }}"
+        volume_level: "{{ volume }}"
+    - delay: '00:00:02'
+    - service: tts.amazon_polly_say
+      data_template:
+        entity_id: "{{ master }}"
+        message: "{{ what }}"
+    - delay: '00:00:25'
+    - service: sonos.restore
+      data_template:
+        with_group: yes

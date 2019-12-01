@@ -1,0 +1,183 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Margaritaville
+
+  # Location required to calculate the time the sun rises and sets
+  latitude: 42.048872
+  longitude: -71.383586
+
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 124
+
+  # metric for Metric, imperial for Imperial
+  unit_system: imperial
+
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: America/New_York
+
+  # Customization file
+  customize: !include customize.yaml
+
+# Show links to resources in log and frontend
+# introduction:
+
+api:
+
+# Enables configuration UI
+config:
+
+frontend:
+  extra_html_url:
+    - /local/hass-bha-icons.html
+
+http:
+  # Secrets are defined in the file secrets.yaml
+  # api_password: !secret api_password
+  ssl_certificate: !secret http_ssl_certificate
+  ssl_key: !secret http_ssl_key
+  base_url: !secret http_base_url
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+  ignore:
+    - apple_tv
+    - harmony
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables a map showing the location of tracked devices
+map:
+
+no_ip:
+  domain: !secret noip_domain
+  username: !secret noip_username
+  password: !secret noip_password
+
+# Track the sun
+sun:
+
+# Weather prediction
+sensor:
+  - platform: yr
+
+system_health:
+
+# Text to speech
+tts:
+  - platform: google_translate
+    service_name: google_say
+
+# Cloud
+cloud:
+
+#################################################################
+## Components
+#################################################################
+
+apple_tv:
+  - name: Living Room Apple TV
+    host: !secret apple_tv_host
+    login_id: !secret apple_tv_login_id
+    credentials: !secret apple_tv_cred
+    start_off: false
+
+device_tracker:
+  - platform: quantum_gateway
+    host: !secret quantum_gateway_host
+    password: !secret quantum_gateway_password
+
+# google:
+#   client_id: !secret google_client_id
+#   client_secret: !secret goole_client_secret
+#   track_new_calendar: true
+
+hue:
+  bridges:
+    - host: !secret hue_bridge_host
+      allow_unreachable: true
+      allow_hue_groups: true
+
+# lutron_caseta:
+#   ca_certs: !secret lutron_caseta_ca_certs
+#   certfile: !secret lutron_caseta_certfile
+#   host: !secret lutron_caseta_host
+#   keyfile: !secret lutron_caseta_keyfile
+
+lutron_caseta_pro:
+    bridges:
+      - host: !secret lutron_caseta_host
+        mac: !secret lutron_caseta_mac
+
+# media_player:
+#   - platform: yamaha
+#     name: "Living Room Media Center Receiver"
+#     host: !secret yamaha_host
+#     source_ignore:
+#       - "AUX"
+#       - "AV1"
+#       - "AV2"
+#       - "AV3"
+#       - "Bluetooth"
+#       - "MusicCast Link"
+#       - "NET RADIO"
+#       - "Pandora"
+#       - "Spotify"
+#       - "TUNER"
+#       - "USB"
+#     source_names:
+#       HDMI1: "Apple TV"
+#       HDMI2: "Xbox One X"
+#       HDMI3: "Verizon Fios"
+#       HDMI4: "Samsung Bluray Player"
+
+remote:
+  - platform: harmony
+    name: Media Center
+    host: !secret harmony_host
+    activity: Watch TV
+
+weather:
+  - platform: darksky
+    api_key: !secret darksky_api_key
+    mode: daily
+    name: !secret darksky_name
+
+# nest:
+#   client_id: !secret nest_client_id
+#   client_secret: !secret nest_client_secret
+
+#################################################################
+## Includes
+#################################################################
+
+# automation: !include_dir_merge_list automation
+automation: !include automation.yaml
+# cameras: !include_dir_merge_list cameras
+# climate: !include_dir_merge_list climate
+group: !include groups.yaml
+# history: !include history.yaml
+# hubs: !include_dir_merge_list hubs
+# input_boolean: !include input_boolean.yaml
+# input_select: !include input_select.yaml
+# light: !include_dir_merge_list lights
+# locks: !include_dir_merge_list locks
+# logbook: !include logbook.yaml
+# media: !include_dir_merge_list media
+# recorder: !include recorder.yaml
+# scene: !include_dir_merge_list scenes
+# script: !include_dir_merge_list scripts
+# security: !include_dir_merge_list security
+# sensor: !include_dir_merge_list sensors
+# switch: !include_dir_merge_list switches
+# tts: !include_dir_merge_list tts
+# zone: !include zones.yaml

@@ -1,0 +1,913 @@
+# #################################################################
+# ## Customize
+# #################################################################
+
+#         ##########################################################
+#         ## Climate
+#         ##########################################################
+
+#   climate.main_floor:
+#     friendly_name: Thermostat
+#     icon: mdi:thermostat-box
+#   climate.basement_heater:
+#     icon: mdi:radiator
+#   sensor.main_floor_humidity:
+#     icon: mdi:water-percent
+#     friendly_name: Dining Room Humidity
+#   sensor.main_floor_temperature:
+#     friendly_name: Dining Room Temperature
+#   binary_sensor.main_floor_occupancy:
+#     device_class: occupancy
+#     friendly_name: Dining Room Occupancy
+#   sensor.wink_relay_sensor_humidity:
+#     icon: mdi:water-percent
+#     friendly_name: Living Room Humidity
+#   sensor.thermostat_climate_mode:
+#     icon: mdi:thermostat-box
+#   fan.office_fan:
+#     friendly_name: Office Fan
+#   climate.office_fan:
+#     friendly_name: Office Heater
+#     icon: mdi:radiator
+#   sensor.office_fan_humidity:
+#     friendly_name: Office Humidity
+
+#         ##########################################################
+#         ## Device Trackers
+#         ##########################################################
+
+#   device_tracker.USER1s_iphone:
+#     icon: mdi:human-male
+#     friendly_name: USER1
+#   device_tracker.USER2s_iphone:
+#     icon: mdi:human-female
+#     friendly_name: USER2
+#   device_tracker.USER1s_ipad:
+#     icon: mdi:tablet-ipad
+#   device_tracker.USER2s_ipad:
+#     icon: mdi:tablet-ipad
+#   device_tracker.USER1smacbookpro:
+#     icon: mdi:laptop-mac
+#   device_tracker.USER2smacbookair:
+#     icon: mdi:laptop-mac
+#   device_tracker.USER1simac:
+#     icon: mdi:desktop-mac
+#   device_tracker.USER2simac:
+#     icon: mdi:desktop-mac
+
+#         ##########################################################
+#         ## Friends and Family
+#         ##########################################################
+
+#   device_tracker.REDACTED:
+#     icon: mdi:human-male
+#     friendly_name: REDACTEDny
+#   device_tracker.REDACTED:
+#     icon: mdi:human-female
+#     friendly_name: REDACTED
+#   device_tracker.REDACTED:
+#     icon: mdi:human-male
+#     friendly_name: REDACTED
+#   device_tracker.REDACTED:
+#     icon: mdi:human-male
+#     friendly_name: REDACTED
+#   device_tracker.REDACTED:
+#     icon: mdi:human-female
+#     friendly_name: REDACTED
+#   device_tracker.REDACTED:
+#     icon: mdi:human-male
+#     friendly_name: REDACTED
+#   device_tracker.REDACTED:
+#     icon: mdi:human-female
+#     friendly_name: REDACTED
+#   device_tracker.REDACTED:
+#     icon: mdi:human-male
+#     friendly_name: REDACTED
+#   device_tracker.REDACTED:
+#     icon: mdi:human-female
+#     friendly_name: REDACTED
+#   group.friends_and_family:
+#     friendly_name: Friends & Family
+#   group.house_guest:
+#     hidden: true
+#     icon: mdi:human-male-female
+#   device_tracker.REDACTEDiphone:
+#     icon: mdi:human-male
+#     friendly_name: REDACTED
+#   device_tracker.REDACTED:
+#     icon: mdi:human-female
+#     friendly_name: REDACTED
+#   device_tracker.REDACTED:
+#     icon: mdi:human-female
+#     friendly_name: REDACTED
+#   device_tracker.REDACTED:
+#     icon: mdi:human-male
+#     friendly_name: REDACTED
+#   device_tracker.REDACTED:
+#     icon: mdi:human-male
+#     friendly_name: REDACTED
+#   device_tracker.REDACTED:
+#     icon: mdi:human-male
+#     friendly_name: REDACTED
+#   device_tracker.REDACTED:
+#     icon: mdi:human-female
+#     friendly_name: REDACTED
+#   device_tracker.REDACTED:
+#     icon: mdi:human-male
+#     friendly_name: REDACTED
+#   device_tracker.REDACTED:
+#     icon: mdi:human-female
+#     friendly_name: REDACTED
+#   device_tracker.REDACTED:
+#     icon: mdi:human-male
+#     friendly_name: REDACTED
+#   device_tracker.REDACTED:
+#     icon: mdi:human-male
+#     friendly_name: REDACTED
+#   device_tracker.REDACTED:
+#     icon: mdi:human-female
+#     friendly_name: REDACTED
+
+#         ##########################################################
+#         ##  Hubs
+#         ##########################################################
+
+#   sensor.garage_door_opener_status:
+#     friendly_name: Garage Door Opener
+#     icon: mdi:garage-alert
+#   sensor.hue_hub_status:
+#     friendly_name: Hue Hub
+#     icon: mdi:ethernet
+
+#         ##########################################################
+#         ##  Garage Door
+#         ##########################################################
+
+#   cover.garage_door:
+#     device_class: garage
+
+#         ##########################################################
+#         ##  Doors
+#         ##########################################################
+
+#   binary_sensor.front_door_opened:
+#     device_class: door
+#     friendly_name: Front Door
+#   binary_sensor.back_door_opened:
+#     device_class: door
+#     friendly_name: Back Door
+#   binary_sensor.basement_door_opened:
+#     device_class: door
+#     friendly_name: Basement Door
+
+#         ##########################################################
+#         ## Door Bell
+#         ##########################################################
+
+#   binary_sensor.ring_front_door_ding:
+#     icon: mdi:bell-ring
+#     friendly_name: Front Door Ring
+#   binary_sensor.ring_front_door_motion:
+#     friendly_name: Front Door Motion
+#     icon: mdi:motion-sensor
+#   sensor.ring_front_door_battery:
+#     friendly_name: Door Bell
+#   sensor.ring_front_door_last_ding:
+#     friendly_name: Front Door Last Ring
+
+#         ##########################################################
+#         ## Travel Times
+#         ##########################################################
+
+#   sensor.USER1_to_home:
+#     icon: mdi:car
+#   sensor.USER2_to_home:
+#     icon: mdi:car
+#   sensor.USER2_to_REDACTED:
+#     icon: mdi:car
+#   sensor.USER2_to_REDACTED:
+#     icon: mdi:car
+#   sensor.USER2_to_REDACTED:
+#     icon: mdi:car
+
+#         ##########################################################
+#         ## Rooms
+#         ##########################################################
+
+#   group.living_room:
+#     icon: mdi:sofa
+#   group.dining_room:
+#     icon: mdi:silverware-variant
+#   group.bedroom:
+#     icon: mdi:hotel
+#   group.kitchen:
+#     icon: mdi:fridge
+#   group.USER1_office:
+#     icon: mdi:desktop-mac
+#   group.guest_bedroom:
+#     icon: mdi:hotel
+#     friendly_name: Guest Bedroom
+#   group.basement:
+#     icon: mdi:stairs
+#   group.interior:
+#     friendly_name: Interior Lights
+
+#         ##########################################################
+#         ## Locks
+#         ##########################################################
+
+#   lock.front_door:
+#     friendly_name: Front Door Lock
+#   lock.back_door:
+#     friendly_name: Back Door Lock
+#   lock.basement_door:
+#     friendly_name: Basement Door Lock
+#   group.all_locks:
+#     friendly_name: Door Locks
+
+#         ##########################################################
+#         ## Sensors
+#         ##########################################################
+
+#   sensor.cpu_use:
+#     icon: mdi:chip
+#     friendly_name: CPU Usage
+#   sensor.ram_use:
+#     friendly_name: RAM Usage
+#   sensor.since_last_boot:
+#     friendly_name: Uptime
+#   sensor.speedtest_ping:
+#     icon: mdi:speedometer
+#   sensor.speedtest_download:
+#     icon: mdi:speedometer
+#   sensor.speedtest_upload:
+#     icon: mdi:speedometer
+#   binary_sensor.wink_hub:
+#     decice_class: connectivity
+#     friendly_name: Wink Hub
+#     icon: mdi:ethernet
+#   binary_sensor.wink_relay:
+#     decice_class: connectivity
+#     friendly_name: Wink Relay
+#     icon: mdi:ethernet
+#   binary_sensor.wink_relay_sensor_presence:
+#     device_class: occupancy
+#   binary_sensor.philips_hue:
+#     decice_class: connectivity
+#     friendly_name: Hue Hub
+#     icon: mdi:ethernet
+#   sensor.vera_plus_status:
+#     decice_class: connectivity
+#     friendly_name: Vera Plus
+#     icon: mdi:ethernet
+#   sensor.lutron_smart_bridge_status:
+#     decice_class: connectivity
+#     friendly_name: Lutron Smart Bridge
+#     icon: mdi:ethernet
+#   binary_sensor.basement_drain_water_sensor_liquid_detected:
+#     device_class: moisture
+#     friendly_name: Basement Drain Water Sensor
+#   binary_sensor.sump_pump_water_sensor_liquid_detected:
+#     device_class: moisture
+#     friendly_name: Sump Pump Water Sensor
+#   sensor.holidays_calendar:
+#     icon: mdi:calendar
+#     friendly_name: Upcoming Holiday
+#   binary_sensor.wan:
+#     friendly_name: Network WAN
+#     icon: mdi:wan
+#   binary_sensor.gateway:
+#     friendly_name: Network Gateway
+#     icon: mdi:lan
+#   sensor.att_router_status:
+#     friendly_name: at&t Router Gateway
+#     icon: mdi:router-wireless
+#   binary_sensor.rochester_vpn:
+#     friendly_name: REDACTED VPN
+#     icon: mdi:lan-connect
+#   binary_sensor.charleston_vpn:
+#     friendly_name: REDACTED VPN
+#     icon: mdi:lan-connect
+#   binary_sensor.living_room_motion:
+#     friendly_name: Living Room Motion
+#     icon: mdi:sofa
+#   sensor.living_room_light_level:
+#     friendly_name: Living Room Light Level
+#     icon: mdi:brightness-6
+#   binary_sensor.basement_motion:
+#     friendly_name: Basement Motion
+#     icon: mdi:stairs
+#   sensor.stairs_light_level:
+#     friendly_name: Stairs Light Level
+#     icon: mdi:brightness-6
+#   sensor.USER2s_bedroom_closet_light_level:
+#     friendly_name: USER2's Closet Light Level
+#     icon: mdi:brightness-6
+#   sensor.dining_room_light_level:
+#     friendly_name: Dining Room Light Level
+#     icon: mdi:brightness-6
+#   sensor.kitchen_light_level:
+#     friendly_name: Kitchen Light Level
+#     icon: mdi:brightness-6
+#   binary_sensor.kitchen_motion:
+#     friendly_name: Kitchen Motion
+#     icon: mdi:fridge-outline
+#   binary_sensor.USER2_bedroom_closet_motion:
+#     friendly_name: USER2's Closet Motion
+#     icon: mdi:hanger
+#   binary_sensor.dining_room_motion:
+#     friendly_name: Dining Room Motion
+#     icon: mdi:silverware
+#   binary_sensor.stairs_motion:
+#     friendly_name: Stairs Motion
+#     icon: mdi:stairs
+#   binary_sensor.USER1s_office_motion:
+#     friendly_name: USER1's Office Motion
+#     icon: mdi:desktop-mac
+#   sensor.USER1s_office_light_sensor:
+#     friendly_name: USER1's Office Light Level
+#     icon: mdi:brightness-6
+#   binary_sensor.basement_door_water_sensor:
+#     device_class: moisture
+#     friendly_name: Basement Door Water Sensor
+#   binary_sensor.kitchen_sink_water_sensor:
+#     device_class: moisture
+#     friendly_name: Kitchen Sink Water Sensor
+#   binary_sensor.bathroom_sink_water_sensor:
+#     device_class: moisture
+#     friendly_name: Bathroom Sink Water Sensor
+#   binary_sensor.upstairs_bathrooom_water_sensor:
+#     device_class: moisture
+#     friendly_name: Upstairs Bathroom Water Sensor
+#   binary_sensor.utility_sink_water_sensor:
+#     device_class: moisture
+#     friendly_name: Utility Sink Water Sensor
+#   binary_sensor.water_heater_water_sensor:
+#     device_class: moisture
+#     friendly_name: Water Heater Water Sensor
+#   binary_sensor.washing_machine_water_sensor:
+#     device_class: moisture
+#     friendly_name: Washing Machine Water Sensor
+
+#         ##########################################################
+#         ## Switches
+#         ##########################################################
+
+#   switch.fireplace:
+#     icon: mdi:fire
+#     friendly_name: Fireplace
+#     emulated_hue_hidden: false
+#     emulated_hue_name: "Remote FRPLC"
+#   switch.air_purifier:
+#     icon: mdi:air-purifier
+#     friendly_name: Air Purifier
+#   switch.basement_heater:
+#     icon: mdi:radiator
+#   switch.christmas_tree:
+#     icon: mdi:pine-tree
+#     friendly_name: Christmas Tree
+#   switch.living_room_ceiling_fan:
+#     icon: mdi:ceiling-light
+#     friendly_name: Living Room Ceiling Fan
+#   switch.front_yard_lighting:
+#     icon: mdi:nature
+#   switch.att_router:
+#     icon: mdi:router-wireless
+#   switch.unificloudkey:
+#     icon: mdi:server-network
+#   switch.front_porch_camera:
+#     icon: mdi:cctv
+#   switch.side_yard_camera:
+#     icon: mdi:cctv
+#   switch.backyard_camera:
+#     icon: mdi:cctv
+#   switch.living_room_camera:
+#     icon: mdi:cctv
+#   switch.basement_camera:
+#     icon: mdi:cctv
+#   switch.summer_mode:
+#     icon: mdi:white-balance-sunny
+#     friendly_name: Summer Mode
+#   switch.winter_mode:
+#     icon: mdi:snowman
+#     friendly_name: Winter Mode
+#   switch.spring_fall_mode:
+#     icon: mdi:leaf
+#     friendly_name: Spring / Fall Mode
+#   switch.backyard_lighting:
+#     friendly_name: Backyard Lighting
+#     icon: mdi:gate
+#   switch.laundry_room_light:
+#     friendly_name: Laundry Room Light
+#     icon: mdi:washing-machine
+#   switch.water_main:
+#     friendly_name: Water Main
+#     icon: mdi:water
+#   switch.livingroom_rainbow:
+#     friendly_name: Living Room Random Color
+#     icon: mdi:palette
+#   switch.bedroom_rainbow:
+#     friendly_name: Bedroom Random Color
+#     icon: mdi:palette
+#   switch.office_rainbow:
+#     friendly_name: Office Random Color
+#     icon: mdi:palette
+#   switch.front_porch_rainbow:
+#     friendly_name: Front Porch Random Color
+#     icon: mdi:palette
+#   switch.bedtime:
+#     friendly_name: Bedtime
+#     icon: mdi:hotel
+
+#         ##########################################################
+#         ## Lights
+#         ##########################################################
+
+#   light.hallway_light:
+#     friendly_name: Hallway
+#     icon: mdi:ceiling-light
+#     emulated_hue_hidden: false
+#     emulated_hue_name: "Remote HLLWY"
+#   light.bathroom_vanity:
+#     icon: mdi:water-pump
+#   light.bathroom_shower:
+#     friendly_name: Shower Light
+#     icon: mdi:shower
+#   light.USER1s_nightstand:
+#     icon: mdi:lamp
+#   light.bedroom_lamp:
+#     icon: mdi:floor-lamp
+#   light.closet_lamp:
+#     icon: mdi:floor-lamp
+#   light.guest_bedroom_nightstand:
+#     icon: mdi:lamp
+#   light.guest_bedroom_ceiling:
+#     icon: mdi:ceiling-light
+#   light.bedroom_closet_ceiling:
+#     icon: mdi:ceiling-light
+#   light.office_lamp:
+#     icon: mdi:floor-lamp
+#   light.USER1_s_office_ceiling:
+#     icon: mdi:ceiling-light
+#     name: USER1's Office Ceiling
+#   light.USER2s_nightstand:
+#     icon: mdi:lamp
+#   light.garage_light:
+#     icon: 'bha:outdoor-lamp-variant'
+#     friendly_name: Garage Light
+#   light.media_center_lighting:
+#     icon: mdi:television
+#   light.basement_stairs:
+#     icon: mdi:ceiling-light
+#   light.dining_room_table:
+#     icon: mdi:ceiling-light
+#   light.dining_room_ceiling:
+#     icon: mdi:ceiling-light
+#   light.kitchen_sink:
+#     icon: mdi:ceiling-light
+#   light.kitchen_cabinets:
+#     icon: mdi:wall-sconce-flat
+#   light.kitchen_ceiling:
+#     icon: mdi:ceiling-light
+#   light.living_room_lights:
+#     icon: mdi:sofa
+#     friendly_name: Living Room
+#     emulated_hue_hidden: false
+#     emulated_hue_name: "Remote LVNGRM"
+#   light.dining_room_lights:
+#     icon: mdi:silverware-variant
+#     friendly_name: Dining Room
+#     emulated_hue_hidden: false
+#     emulated_hue_name: "Remote DNGRM"
+#   light.bedroom_lights:
+#     icon: mdi:hotel
+#     friendly_name: Bedroom
+#     emulated_hue_hidden: false
+#     emulated_hue_name: "Remote BDRM"
+#   light.kitchen_lights:
+#     icon: mdi:fridge
+#     friendly_name: Kitchen
+#     emulated_hue_hidden: false
+#     emulated_hue_name: "Remote KTCHN"
+#   light.stairs_light:
+#     icon: mdi:stairs
+#     friendly_name: Stairs
+#     emulated_hue_hidden: false
+#     emulated_hue_name: "Remote STRS"
+#   light.bathroom_lights:
+#     icon: mdi:shower
+#     friendly_name: Bathroom
+#     emulated_hue_hidden: false
+#     emulated_hue_name: "Remote BTH"
+#   light.upstairs_bathroom_lights:
+#     icon: mdi:water-pump
+#     friendly_name: Upstairs Bathroom
+#   light.USER1_office_lights:
+#     icon: mdi:desktop-mac
+#     friendly_name: USER1 Office
+#   light.USER2_s_office_ceiling:
+#     icon: mdi:ceiling-light
+#   light.guest_bedroom_lights:
+#     icon: mdi:hotel
+#     friendly_name: Guest Bedroom
+#   light.basement_lighting:
+#     icon: mdi:stairs
+#     friendly_name: Basement
+#   light.front_porch:
+#     icon: bha:outdoor-lamp
+#   light.back_door:
+#     icon: mdi:ceiling-light
+#   light.backyard_deck:
+#     icon: mdi:track-light
+#     friendly_name: Backyard Deck
+#   light.backyard_patio:
+#     icon: 'bha:outdoor-lamp-variant'
+#   light.living_room_lamps:
+#     icon: mdi:floor-lamp
+#   light.USER2_office_lights:
+#     icon: mdi:desktop-mac
+#     friendly_name: USER2's Office
+#   light.basement_lights:
+#     icon: mdi:ceiling-light
+#   light.globe:
+#     icon: mdi:globe-model
+#   light.upstairs_bathroom_vanity:
+#     friendly_name: Upstairs Bathroom Vanity
+#     icon: mdi:water-pump
+#   light.craft_room_ceiling:
+#     friendly_name: Craft Room
+#     icon: mdi:ceiling-light
+#   light.work_bench_light:
+#     friendly_name: Work Bench Light
+#     icon: mdi:hammer
+#   light.laundry_room_light:
+#     friendly_name: Laundry Room Light
+#     icon: mdi:washing-machine
+#   light.basement_storage_area_ceiling:
+#     friendly_name: Basement Storage Area
+#     icon: mdi:ceiling-light
+#   light.USER2s_bedroom_closet:
+#     friendly_name: USER2's Closet
+#     icon: mdi:ceiling-light
+
+#         ##########################################################
+#         ## Weather
+#         ##########################################################
+
+#   sensor.REDACTED_temperature:
+#     friendly_name: 'Outdoor Temperature'
+
+#         ##########################################################
+#         ## Media Players
+#         ##########################################################
+
+#   media_player.living_room_apple_tv:
+#     icon: mdi:apple
+#   media_player.bedroom_apple_tv:
+#     icon: mdi:apple
+#   media_player.guest_bedroom_apple_tv:
+#     icon: mdi:apple
+#   media_player.USER1_office_apple_tv:
+#     icon: mdi:apple
+#   media_player.plex_living_room:
+#     friendly_name: Living Room Plex
+#     icon: mdi:plex
+#   media_player.plex_bedroom:
+#     friendly_name: Bedroom Plex
+#     icon: mdi:plex
+#   media_player.plex_office:
+#     friendly_name: Office Plex
+#     icon: mdi:plex
+#   sensor.REDACTED:
+#     icon: mdi:theater
+#   media_player.roku_REDACTED:
+#     friendly_name: Basement Roku
+#   media_player.media_center_receiver:
+#     icon: mdi:speaker
+
+#         ##########################################################
+#         ## Vacuums
+#         ##########################################################
+
+#   vacuum.downstairs_roomba:
+#     icon: mdi:robot-vacuum
+#   vacuum.upstairs_roomba:
+#     icon: mdi:robot-vacuum
+
+#         ##########################################################
+#         ## Amazon Echo Integration
+#         ##########################################################
+
+#   input_boolean.office_rainbow:
+#     emulated_hue_hidden: false
+#     emulated_hue_name: "Office Party"
+#   input_boolean.livingroom_rainbow:
+#     emulated_hue_hidden: false
+#     emulated_hue_name: "Living Room Party"
+#   input_boolean.front_porch_rainbow:
+#     emulated_hue_hidden: false
+#     emulated_hue_name: "Front Porch Party"
+#   input_boolean.bedroom_rainbow:
+#     emulated_hue_hidden: false
+#     emulated_hue_name: "Bedroom Party"
+#   input_boolean.vacation_mode:
+#     emulated_hue_hidden: false
+#     emulated_hue_name: "Vacation Mode"
+#   input_boolean.garage_door:
+#     emulated_hue_hidden: false
+#     emulated_hue_name: "Garage Door"
+#   input_boolean.unlock_doors:
+#     emulated_hue_hidden: false
+#     emulated_hue_name: "Unlock Doors"
+#   input_boolean.lock_doors:
+#     emulated_hue_hidden: false
+#     emulated_hue_name: "Lock Doors"
+#   input_boolean.bedtime:
+#     emulated_hue_hidden: false
+#     emulated_hue_name: "Bedtime"
+#   input_boolean.pop_music:
+#     emulated_hue_hidden: false
+#     emulated_hue_name: "Pop Music"
+#   input_boolean.jazz_music:
+#     emulated_hue_hidden: false
+#     emulated_hue_name: "Jazz Music"
+#   input_boolean.classical_music:
+#     emulated_hue_hidden: false
+#     emulated_hue_name: "Classical Music"
+#   input_boolean.electronic_music:
+#     emulated_hue_hidden: false
+#     emulated_hue_name: "Electronic Music"
+#   input_boolean.chill_music:
+#     emulated_hue_hidden: false
+#     emulated_hue_name: "Chill Music"
+#   input_boolean.group_all_sonos:
+#     emulated_hue_hidden: false
+#     emulated_hue_name: "All Speakers"
+#   input_boolean.bedroom_tv:
+#     emulated_hue_hidden: false
+#     emulated_hue_name: "Bedroom TV"
+#   input_boolean.office_tv:
+#     emulated_hue_hidden: false
+#     emulated_hue_name: "Office TV"
+
+#         ##########################################################
+#         ## Alarm
+#         ##########################################################
+
+#   automation.security_motion_alarm:
+#     icon: mdi:shield-outline
+#     friendly_name: Motion Security Enabled
+#   automation.security_door_alarm:
+#     icon: mdi:shield-outline
+#     friendly_name: Door Security Enabled
+#   switch.siren:
+#     friendly_name: Alarm Siren
+#     icon: mdi:alarm-bell
+
+#         ##########################################################
+#         ## Sonos
+#         ##########################################################
+
+#   media_player.sonos_media_center:
+#     icon: mdi:speaker
+#     friendly_name: Media Center Sonos
+#   media_player.sonos_living_room:
+#     icon: mdi:speaker
+#     friendly_name: Living Room Sonos
+#   media_player.sonos_dining_room:
+#     icon: mdi:speaker
+#     friendly_name: Dining Room Sonos
+#   media_player.sonos_kitchen:
+#     icon: mdi:speaker
+#     friendly_name: Kitchen Sonos
+#   media_player.sonos_bathroom:
+#     icon: mdi:speaker
+#     friendly_name: Bathroom Sonos
+#   media_player.sonos_USER1s_office:
+#     icon: mdi:speaker
+#     friendly_name: USER1's Office Sonos
+#   media_player.sonos_USER2s_office:
+#     icon: mdi:speaker
+#     friendly_name: USER2's Office Sonos
+#   media_player.sonos_basement:
+#     icon: mdi:speaker
+#     friendly_name: Basement Sonos
+#   media_player.sonos_backyard_patio:
+#     icon: mdi:speaker
+#     friendly_name: Backyard Patio Sonos
+#   media_player.sonos_bedroom:
+#     icon: mdi:speaker
+#     friendly_name: Bedroom Sonos
+
+#         ##########################################################
+#         ## Receiver
+#         ##########################################################
+
+#   sensor.receiver_input:
+#     icon: mdi:video-input-hdmi
+#   sensor.receiver_sound_mode:
+#     icon: mdi:surround-sound
+
+#         ##########################################################
+#         ## Remote
+#         ##########################################################
+
+#   sensor.media_center:
+#     icon: mdi:television
+#     friendly_name: Media Center Remote
+
+#         ##########################################################
+#         ## NAS
+#         ##########################################################
+
+#   sensor.nas_status:
+#     friendly_name: System Status
+#     icon: mdi:nas
+#   sensor.nas_smart_status_drive_0_1:
+#     friendly_name: Drive 1 SMART Status
+#     icon: mdi:harddisk
+#   sensor.nas_smart_status_drive_0_2:
+#     friendly_name: Drive 2 SMART Status
+#     icon: mdi:harddisk
+#   sensor.nas_smart_status_drive_0_3:
+#     friendly_name: Drive 3 SMART Status
+#     icon: mdi:harddisk
+#   sensor.nas_smart_status_drive_0_4:
+#     friendly_name: Drive 4 SMART Status
+#     icon: mdi:harddisk
+#   sensor.nas_volume_used_storage:
+#     friendly_name: Storage Volume Used
+#   sensor.nas_volume_used_backup:
+#     friendly_name: Backup Volume Used
+#   sensor.nas_used_space_storage:
+#     friendly_name: Storage Volume Used Space
+#   sensor.nas_used_space_backup:
+#     friendly_name: Backup Volume Used Space
+#   sensor.nas_free_space_storage:
+#     friendly_name: Storage Volume Free Space
+#   sensor.nas_free_space_backup:
+#     friendly_name: Backup Volume Free Space
+#   sensor.nas_cpu_usage:
+#     friendly_name: CPU Usage
+#   sensor.nas_memory_usage:
+#     friendly_name: Memory Usage
+#   sensor.nas_network_link_eth0:
+#     friendly_name: eth0 Link Status
+#     icon: mdi:ethernet
+#   sensor.nas_network_link_eth1:
+#     friendly_name: eth1 Link Status
+#     icon: mdi:ethernet
+#   sensor.nas_network_up_eth0:
+#     friendly_name: eth0 Upload
+#   sensor.nas_network_up_eth1:
+#     friendly_name: eth1 Upload
+#   sensor.nas_network_down_eth0:
+#     friendly_name: eth0 Download
+#   sensor.nas_network_down_eth1:
+#     friendly_name: eth1 Download
+#   sensor.nas_system_temperature:
+#     friendly_name: System Temperature
+#   sensor.nas_cpu_temperature:
+#     friendly_name: CPU Temperature
+#   sensor.nas_temperature_drive_01:
+#     friendly_name: Drive 1 Temperature
+#   sensor.nas_temperature_drive_02:
+#     friendly_name: Drive 2 Temperature
+#   sensor.nas_temperature_drive_03:
+#     friendly_name: Drive 3 Temperature
+#   sensor.nas_temperature_drive_04:
+#     friendly_name: Drive 4 Temperature
+
+#         ##########################################################
+#         ## UPS
+#         ##########################################################
+
+#   sensor.ups_status:
+#     icon: mdi:car-battery
+#   sensor.ups_battery_charge:
+#     device_class: battery
+#     icon: mdi:battery
+#   sensor.ups_battery_runtime_mins:
+#     icon: mdi:timer
+
+#         ##########################################################
+#         ## Weather
+#         ##########################################################
+
+#   weather.dark_sky:
+#     friendly_name: Weather Forecast
+
+#         ##########################################################
+#         ## Smoke Alarm
+#         ##########################################################
+
+#   binary_sensor.living_room_nest_protect_online:
+#     friendly_name: Living Room Smoke Alarm
+#     icon: mdi:smoke-detector
+#   binary_sensor.bedroom_nest_protect_online:
+#     friendly_name: Bedroom Smoke Alarm
+#     icon: mdi:smoke-detector
+#   binary_sensor.kitchen_nest_protect_online:
+#     friendly_name: Kitchen Smoke Alarm
+#     icon: mdi:smoke-detector
+#   binary_sensor.hallway_nest_protect_online:
+#     friendly_name: Hallway Smoke Alarm
+#     icon: mdi:smoke-detector
+#   binary_sensor.upstairs_nest_protect_online:
+#     friendly_name: Upstairs Smoke Alarm
+#     icon: mdi:smoke-detector
+#   binary_sensor.basement_nest_protect_online:
+#     friendly_name: Basement Smoke Alarm
+#     icon: mdi:smoke-detector
+#   sensor.living_room_nest_protect_battery_health:
+#     friendly_name: Living Room
+#     icon: mdi:battery
+#   sensor.bedroom_nest_protect_battery_health:
+#     friendly_name: Bedroom
+#     icon: mdi:battery
+#   sensor.hallway_nest_protect_battery_health:
+#     friendly_name: Hallway
+#     icon: mdi:battery
+#   sensor.kitchen_nest_protect_battery_health:
+#     friendly_name: Kitchen
+#     icon: mdi:battery
+#   sensor.upstairs_nest_protect_battery_health:
+#     friendly_name: Upstairs
+#     icon: mdi:battery
+#   sensor.basement_nest_protect_battery_health:
+#     friendly_name: Basement
+#     icon: mdi:battery
+#   sensor.living_room_nest_protect_color_status:
+#     friendly_name: Living Room Smoke Alarm
+#     icon: mdi:smoke-detector
+#   sensor.bedroom_nest_protect_color_status:
+#     friendly_name: Bedroom Smoke Alarm
+#     icon: mdi:smoke-detector
+#   sensor.kitchen_nest_protect_color_status:
+#     friendly_name: Kitchen Smoke Alarm
+#     icon: mdi:smoke-detector
+#   sensor.hallway_nest_protect_color_status:
+#     friendly_name: Hallway Smoke Alarm
+#     icon: mdi:smoke-detector
+#   sensor.upstairs_nest_protect_color_status:
+#     friendly_name: Upstairs Smoke Alarm
+#     icon: mdi:smoke-detector
+#   sensor.basement_nest_protect_color_status:
+#     friendly_name: Basement Smoke Alarm
+#     icon: mdi:smoke-detector
+#   sensor.living_room_nest_protect_co_status:
+#     friendly_name: Living Room CO
+#     icon: mdi:smoke-detector
+#   sensor.bedroom_nest_protect_co_status:
+#     friendly_name: Bedroom CO
+#     icon: mdi:smoke-detector
+#   sensor.kitchen_nest_protect_co_status:
+#     friendly_name: Kitchen CO
+#     icon: mdi:smoke-detector
+#   sensor.hallway_nest_protect_co_status:
+#     friendly_name: Hallway CO
+#     icon: mdi:smoke-detector
+#   sensor.upstairs_nest_protect_co_status:
+#     friendly_name: Upstairs CO
+#     icon: mdi:smoke-detector
+#   sensor.basement_nest_protect_co_status:
+#     friendly_name: Basement CO
+#     icon: mdi:smoke-detector
+#   sensor.living_room_nest_protect_smoke_status:
+#     friendly_name: Living Room Smoke
+#     icon: mdi:smoke-detector
+#   sensor.bedroom_nest_protect_smoke_status:
+#     friendly_name: Bedroom Smoke
+#     icon: mdi:smoke-detector
+#   sensor.kitchen_nest_protect_smoke_status:
+#     friendly_name: Kitchen Smoke
+#     icon: mdi:smoke-detector
+#   sensor.hallway_nest_protect_smoke_status:
+#     friendly_name: Hallway Smoke
+#     icon: mdi:smoke-detector
+#   sensor.upstairs_nest_protect_smoke_status:
+#     friendly_name: Upstairs Smoke
+#     icon: mdi:smoke-detector
+#   sensor.basement_nest_protect_smoke_status:
+#     friendly_name: Basement Smoke
+#     icon: mdi:smoke-detector
+
+#         ##########################################################
+#         ## Washing Machine
+#         ##########################################################
+
+#   sensor.washing_machine_status:
+#     icon: mdi:washing-machine
+#   switch.washing_machine:
+#     icon: mdi:washing-machine
+#     friendly_name: Washing Machine Power
+#   sensor.washing_machine_current_power:
+#     icon: mdi:power-plug
+#     friendly_name: Washing Machine Wattage
+
+#         ##########################################################
+#         ## Groups
+#         ##########################################################
+
+#   group.automation_on_demand:
+#     friendly_name: Automation

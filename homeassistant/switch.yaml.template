@@ -1,0 +1,184 @@
+#################################################################
+##  Switches
+#################################################################
+
+#################################################################
+##  Template Switches
+#################################################################
+
+        ##########################################################
+        ## Summer Mode
+        ##########################################################
+
+  - platform: template
+    switches:
+      summer_mode:
+        value_template: "{{ is_state('group.summer_mode', 'on') }}"
+        turn_on:
+          service: homeassistant.turn_on
+          data:
+            entity_id: group.summer_mode
+        turn_off:
+          service: homeassistant.turn_off
+          data:
+            entity_id: group.summer_mode
+
+        ##########################################################
+        ## Winter Mode
+        ##########################################################
+
+  - platform: template
+    switches:
+      winter_mode:
+        value_template: "{{ is_state('group.winter_mode', 'on') }}"
+        turn_on:
+          service: homeassistant.turn_on
+          data:
+            entity_id: group.winter_mode
+        turn_off:
+          service: homeassistant.turn_off
+          data:
+            entity_id: group.winter_mode
+
+        ##########################################################
+        ## Spring / Fall Mode
+        ##########################################################
+
+  - platform: template
+    switches:
+      spring_fall_mode:
+        value_template: "{{ is_state('input_boolean.spring_fall_mode', 'on') }}"
+        turn_on:
+          service: homeassistant.turn_on
+          data:
+            entity_id: input_boolean.spring_fall_mode
+        turn_off:
+          service: homeassistant.turn_off
+          data:
+            entity_id: input_boolean.spring_fall_mode
+
+        ##########################################################
+        ## Living Room Random Light Color
+        ##########################################################
+
+  - platform: template
+    switches:
+      livingroom_rainbow:
+        value_template: "{{ is_state('input_boolean.livingroom_rainbow', 'on') }}"
+        turn_on:
+          service: homeassistant.turn_on
+          data:
+            entity_id: input_boolean.livingroom_rainbow
+        turn_off:
+          service: homeassistant.turn_off
+          data:
+            entity_id: input_boolean.livingroom_rainbow
+
+        ##########################################################
+        ## Bedroom Random Light Color
+        ##########################################################
+
+  - platform: template
+    switches:
+      bedroom_rainbow:
+        value_template: "{{ is_state('input_boolean.bedroom_rainbow', 'on') }}"
+        turn_on:
+          service: homeassistant.turn_on
+          data:
+            entity_id: input_boolean.bedroom_rainbow
+        turn_off:
+          service: homeassistant.turn_off
+          data:
+            entity_id: input_boolean.bedroom_rainbow
+
+        ##########################################################
+        ## Office Random Light Color
+        ##########################################################
+
+  - platform: template
+    switches:
+      office_rainbow:
+        value_template: "{{ is_state('input_boolean.office_rainbow', 'on') }}"
+        turn_on:
+          service: homeassistant.turn_on
+          data:
+            entity_id: input_boolean.office_rainbow
+        turn_off:
+          service: homeassistant.turn_off
+          data:
+            entity_id: input_boolean.office_rainbow
+
+        ##########################################################
+        ## Front Porch Random Light Color
+        ##########################################################
+
+  - platform: template
+    switches:
+      front_porch_rainbow:
+        value_template: "{{ is_state('input_boolean.front_porch_rainbow', 'on') }}"
+        turn_on:
+          service: homeassistant.turn_on
+          data:
+            entity_id: input_boolean.front_porch_rainbow
+        turn_off:
+          service: homeassistant.turn_off
+          data:
+            entity_id: input_boolean.front_porch_rainbow
+
+        ##########################################################
+        ## Bedtime Switch
+        ##########################################################
+
+  - platform: template
+    switches:
+      bedtime:
+        value_template: "{{ is_state('input_boolean.bedtime', 'on') }}"
+        turn_on:
+          service: homeassistant.turn_on
+          data:
+            entity_id: input_boolean.bedtime
+        turn_off:
+          service: homeassistant.turn_off
+          data:
+            entity_id: input_boolean.bedtime
+
+        ##########################################################
+        ## Backyard Lighting
+        ##########################################################
+
+  - platform: template
+    switches:
+      backyard_lighting:
+        value_template: "{{ is_state('group.backyard_lighting', 'on') }}"
+        turn_on:
+          service: homeassistant.turn_on
+          data:
+            entity_id: group.backyard_lighting
+        turn_off:
+          service: homeassistant.turn_off
+          data:
+            entity_id: group.backyard_lighting
+
+        ##########################################################
+        ## Pihole #1 Disable Switch
+        ##########################################################
+
+  - platform: command_line
+    switches:
+      pihole_1_switch:
+        command_on: "curl -X GET 'http://REDACTED.4/REDACTED/api.php?enable&auth=REDACTED'"
+        command_off: "curl -X GET 'http://REDACTED.4/REDACTED/api.php?disable=1800&auth=REDACTED'"
+        command_state: "curl -X GET 'http://REDACTED.4/REDACTED/api.php?status'"
+        value_template: "{{ value_json.status == 'enabled' }}"
+
+        ##########################################################
+        ## Pihole #2 Disable Switch
+        ##########################################################
+
+  - platform: command_line
+    switches:
+      pihole_2_switch:
+        command_on: "curl -X GET 'http://REDACTED.5/REDACTED/api.php?enable&auth=REDACTED'"
+        command_off: "curl -X GET 'http://REDACTED.5/REDACTED/api.php?disable=1800&auth=REDACTED'"
+        command_state: "curl -X GET 'http://REDACTED.5/REDACTED/api.php?status'"
+        value_template: "{{ value_json.status == 'enabled' }}"

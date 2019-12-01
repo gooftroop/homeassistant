@@ -1,0 +1,11 @@
+*.log
+*.sqlite3
+*.local
+*.db
+.HA_VERSION
+.uuid
+.cloud
+.storage
+secrets.yaml
+letsencrypt/keys/*
+letsencrypt/etc/letsencrypt/*

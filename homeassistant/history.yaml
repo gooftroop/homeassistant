@@ -1,0 +1,52 @@
+#################################################################
+## History
+#################################################################
+
+  use_include_order: True
+  # include:
+  #   entities:
+  #     - group.household
+  #     - device_tracker.USER1s_iphone
+  #     - device_tracker.USER2s_iphone
+  #     - light.living_room_lights
+  #     - light.dining_room_lights
+  #     - light.bedroom_lights
+  #     - light.kitchen_lights
+  #     - light.hallway_light
+  #     - light.bathroom_lights
+  #     - light.stairs_light
+  #     - light.basement_lighting
+  #     - light.USER1_office_lights
+  #     - light.USER2_s_office_ceiling
+  #     - light.guest_bedroom_lights
+  #     - light.upstairs_bathroom_lights
+  #     - light.front_porch
+  #     - light.back_door
+  #     - light.backyard_deck
+  #     - light.backyard_patio
+  #     - light.garage_light
+  #     - switch.front_yard_lighting
+  #     - group.backyard_lighting
+  #     - switch.fireplace
+  #     - switch.air_purifier
+  #     - fan.office_fan
+  #     - vacuum.downstairs_roomba
+  #     - vacuum.upstairs_roomba
+  #     - lock.front_door
+  #     - lock.back_door
+  #     - lock.basement_door
+  #     - binary_sensor.front_door_opened
+  #     - binary_sensor.back_door_opened
+  #     - binary_sensor.basement_door_opened
+  #     - cover.garage_door
+  #     - sensor.REDACTED_temperature
+  #     - sensor.living_room_temperature
+  #     - sensor.main_floor_temperature
+  #     - sensor.kitchen_temperature
+  #     - sensor.bedroom_temperature
+  #     - sensor.bathroom_temperature
+  #     - sensor.office_temperature
+  #     - sensor.USER2_office_temperature
+  #     - sensor.guest_bedroom_temperature
+  #     - sensor.basement_temperature
+  #     - sensor.laundry_room_temperature

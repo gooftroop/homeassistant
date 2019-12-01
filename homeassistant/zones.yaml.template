@@ -1,0 +1,28 @@
+#################################################################
+## Zones
+#################################################################
+
+#REDACTED
+  - name: REDACTED
+    latitude: REDACTED
+    longitude: REDACTED
+    radius: 300
+    icon: mdi:hospital
+#Lake
+  - name: Lake
+    latitude: REDACTED
+    longitude: REDACTED
+    radius: 20000
+    icon: mdi:beach
+#REDACTED Office
+  - name: REDACTED
+    latitude: REDACTED
+    longitude: REDACTED
+    radius: 300
+    icon: mdi:briefcase
+#REDACTED Office
+  - name: REDACTED
+    latitude: REDACTED
+    longitude: REDACTED
+    radius: 300
+    icon: mdi:briefcase

@@ -1,13 +1,41 @@
 version: "3.7"
 services:
     homeassistant:
-        build: .
         container_name: home-assistant
-        # image: homeassistant/home-assistant
-        # environment:
-        #     - "TZ=America/New_York"
+        image: homeassistant/home-assistant
+        environment:
+            - TZ=America/New_York
         ports:
             - 8123:8123
         volumes:
-            - ".:/config"
+            - ./homeassistant:/config:delegated
+            - ./letsencrypt/etc/letsencrypt/archive/gooftroop.servebeer.com:/etc/letsencrypt/archive/gooftroop.servebeer.com:delegated
+            - ./letsencrypt/etc/letsencrypt/live/gooftroop.servebeer.com:/etc/letsencrypt/live/gooftroop.servebeer.com:delegated
         restart: always
+        depends_on:
+            - letsencrypt
+    letsencrypt:
+        image: linuxserver/letsencrypt
+        container_name: letsencrypt
+        cap_add:
+            - NET_ADMIN
+        environment:
+            - PUID=1000
+            - PGID=1000
+            - TZ=America/New_York
+            - URL=gooftroop.servebeer.com
+            - SUBDOMAINS=,
+            - VALIDATION=http
+            # - DNSPLUGIN=cloudflare # optional
+            # - DUCKDNSTOKEN=token # optional
+            - EMAIL=webb.c.brandon@gmail.com # optional
+            - DHLEVEL=2048 # optional
+            - ONLY_SUBDOMAINS=false # optional
+            # - EXTRA_DOMAINS=extradomains # optional
+            - STAGING=false # optional
+        volumes:
+            - ./letsencrypt:/config
+        ports:
+            - 3443:443
+            - 3080:80 # optional
+        restart: unless-stopped

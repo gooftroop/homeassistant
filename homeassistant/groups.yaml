@@ -1,0 +1,120 @@
+# #################################################################
+# ## Groups
+# #################################################################
+
+living_room_lights:
+  name: Living Room Lights
+  all: true
+  entities:
+    - light.living_room_downlight_1
+    - light.living_room_downlight_2
+    - light.living_room_downlight_3
+    - light.living_room_downlight_4
+    - light.living_room_downlight_5
+    - light.living_room_downlight_6
+
+#   Household:
+#     - device_tracker.USER1s_iphone
+#     - device_tracker.USER2s_iphone
+#     - group.house_guest
+
+#   House Guest:
+#   #  - device_tracker.REDACTED
+#   #  - device_tracker.REDACTED
+#     - device_tracker.REDACTED
+#     - device_tracker.REDACTED
+#     - device_tracker.REDACTED
+#     - device_tracker.REDACTED
+#     - device_tracker.REDACTED
+#     - device_tracker.REDACTED
+
+#   Friends and Family:
+#     - device_tracker.REDACTED
+#     - device_tracker.REDACTED
+#     - device_tracker.REDACTED
+#     - device_tracker.REDACTED
+#     - device_tracker.REDACTED
+#     - device_tracker.REDACTED
+#     - device_tracker.REDACTED
+#     - device_tracker.REDACTED
+#     - device_tracker.REDACTED
+#     - device_tracker.REDACTED
+#     - device_tracker.REDACTED
+#     - device_tracker.REDACTED
+#     - device_tracker.REDACTED
+#     - device_tracker.REDACTEDiphone
+#     - device_tracker.REDACTED
+#     - device_tracker.REDACTED
+#     - device_tracker.REDACTED
+#     - device_tracker.REDACTED
+#     - device_tracker.REDACTED
+#     - device_tracker.REDACTED
+#     - device_tracker.REDACTED
+#     - device_tracker.REDACTED
+
+#   Overnight Guests:
+#     - device_tracker.REDACTED
+#     - device_tracker.REDACTED
+#     - device_tracker.REDACTED
+#     - device_tracker.REDACTED
+#     - device_tracker.REDACTED
+#     - device_tracker.REDACTED
+#     - device_tracker.REDACTED
+#     - device_tracker.REDACTED
+#     - device_tracker.REDACTED
+
+#   Backyard Lighting:
+#     - switch.backyard_patio_lighting
+#     - switch.lower_backyard_lighting
+
+#   Interior Lights:
+#     - light.living_room_lights
+#     - light.dining_room_lights
+#     - light.bedroom_lights
+#     - light.kitchen_lights
+#     - light.hallway_light
+#     - light.bathroom_lights
+#     - light.stairs_light
+#     - light.basement_lighting
+#     - light.USER1_office_lights
+#     - light.USER2_office_lights
+#     - light.guest_bedroom_lights
+#     - light.upstairs_bathroom_lights
+
+#   Exterior Lights:
+#     - light.front_porch
+#     - light.back_door
+#     - light.backyard_deck
+#     - light.backyard_patio
+#     - light.garage_light
+#     - switch.front_yard_lighting
+#     - group.backyard_lighting
+
+#   Summer Mode:
+#     - automation.climate_turn_on_summer
+#     - automation.climate_turn_off_summer
+
+#   Winter Mode:
+#     - automation.climate_turn_on_winter
+#     - automation.climate_turn_off_winter
+
+#   Occupancy:
+#     - binary_sensor.living_room_occupancy
+#     - binary_sensor.main_floor_occupancy
+#     - binary_sensor.kitchen_occupancy
+#     - binary_sensor.bedroom_occupancy
+#     - binary_sensor.bathroom_occupancy
+#     - binary_sensor.office_occupancy
+#     - binary_sensor.USER2_office_occupancy
+#     - binary_sensor.guest_bedroom_occupancy
+#     - binary_sensor.basement_occupancy
+#     - binary_sensor.laundry_room_occupancy
+
+#   Basement Occupancy:
+#     - binary_sensor.basement_occupancy
+#     - binary_sensor.laundry_room_occupancy
+
+#   Doors:
+#     - binary_sensor.front_door_opened
+#     - binary_sensor.back_door_opened
+#     - binary_sensor.basement_door_opened

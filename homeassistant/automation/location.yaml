@@ -1,0 +1,1281 @@
+#################################################################
+## Locaiton Automations
+#################################################################
+
+        ##########################################################
+        ## Household Away Mode
+        ##########################################################
+
+- alias: Location - Household Away Mode
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'home'
+      to: 'not_home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+
+  action:
+    - service: lock.lock
+      entity_id: group.all_locks
+    - service: light.turn_off
+      entity_id:
+        - group.interior_lights
+        - light.backyard_patio
+        - light.backyard_deck
+    - service: switch.turn_off
+      entity_id:
+        - switch.air_purifier
+        - switch.lower_backyard_lighting
+        - switch.backyard_patio_lighting
+        - switch.fireplace
+        - switch.basement_heater
+    - service: fan.turn_off
+      entity_id:
+        - fan.office_fan
+    - service: cover.close_cover
+      entity_id: cover.garage_door
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.guest_mode
+        - input_boolean.interior_holiday
+        - input_boolean.office_rainbow
+        - input_boolean.livingroom_rainbow
+        - input_boolean.front_porch_rainbow
+        - input_boolean.pop_music
+        - input_boolean.jazz_music
+        - input_boolean.chill_music
+        - input_boolean.electronic_music
+        - input_boolean.classical_music
+        - input_boolean.adele_music
+        - input_boolean.group_all_sonos
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.remote
+        option: "PowerOff"
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.bedroom_remote
+        option: "PowerOff"
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.office_remote
+        option: "PowerOff"
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.sonos
+        option: "None"
+    - service: media_player.media_stop
+      entity_id:
+        - media_player.sonos_media_center
+        - media_player.sonos_living_room
+        - media_player.sonos_dining_room
+        - media_player.sonos_kitchen
+        - media_player.sonos_bathroom
+        - media_player.sonos_bedroom
+        - media_player.sonos_USER1s_office
+        - media_player.sonos_USER2s_office
+        - media_player.sonos_basement
+        - media_player.sonos_backyard_patio
+
+        ##########################################################
+        ## USER1 Home from Walking Unlock Doors Turn on Garage Light
+        ##########################################################
+
+- alias: Location - USER1 Home from Waling Unlock Doors Turn on Garage Light
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker.USER1s_iphone
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER1_away
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.USER1_away_driving
+      state: 'off'
+
+  action:
+    - service: lock.unlock
+      entity_id:
+        - lock.back_door
+        - lock.front_door
+
+        ##########################################################
+        ## USER1 Home from Driving Open Garage Door Unlock Door
+        ##########################################################
+
+- alias: Location - USER1 Home from Driving Open Garage Door Unlock Door
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker.USER1s_iphone
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_auto_garage
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER1_away
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.USER1_away_driving
+      state: 'on'
+
+  action:
+    - service: cover.open_cover
+      entity_id: cover.garage_door
+    - service: lock.unlock
+      entity_id: lock.back_door
+
+        ##########################################################
+        ## After USER1 Home Lock Doors
+        ########################################################
+
+- alias: Location - After USER1 Home Lock Doors
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER1_away
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_lock_unlock_doors
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.front_door_opened
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.back_door_opened
+      state: 'off'
+
+  action:
+    - service: lock.lock
+      entity_id:
+        - lock.back_door
+        - lock.front_door
+
+        ##########################################################
+        ## After USER1 Home Close Garage Door
+        ########################################################
+
+- alias: Location - USER1 Home Close Garage
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER1_away
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_auto_garage
+      state: 'off'
+
+  action:
+    - service: cover.close_cover
+      entity_id: cover.garage_door
+
+        ##########################################################
+        ## USER2 Home from Walking Unlock Doors
+        ##########################################################
+
+- alias: Location - USER2 Home from Walking Unlock Doors
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker.USER2s_iphone
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER2_away
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.USER2_away_driving
+      state: 'off'
+
+
+  action:
+    - service: lock.unlock
+      entity_id:
+        - lock.back_door
+        - lock.front_door
+
+        ##########################################################
+        ## USER2 Home from Driving Open Garage Door Unlock Door
+        ##########################################################
+
+- alias: Location - USER2 Home from Driving Open Garage Door Unlock Door
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker.USER2s_iphone
+#      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_auto_garage
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER2_away
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.USER2_away_driving
+      state: 'on'
+
+  action:
+    - service: cover.open_cover
+      entity_id: cover.garage_door
+    - service: lock.unlock
+      entity_id: lock.back_door
+
+        ##########################################################
+        ## After USER2 Home Lock Doors
+        ########################################################
+
+- alias: Location - USER2 Home Lock Doors
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER2_away
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_lock_unlock_doors
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.front_door_opened
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.back_door_opened
+      state: 'off'
+
+  action:
+    - service: lock.lock
+      entity_id:
+        - lock.back_door
+        - lock.front_door
+
+        ##########################################################
+        ## After USER2 Home Close Garage Door
+        ########################################################
+
+- alias: Location - USER2 Home Close Garage
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER2_away
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_auto_garage
+      state: 'off'
+
+  action:
+    - service: cover.close_cover
+      entity_id: cover.garage_door
+
+        ##########################################################
+        ## USER1 Home Turn on Lights
+        ##########################################################
+
+- alias: Location - USER1 Home Turn on Lights
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker.USER1s_iphone
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER1_away
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.kitchen_sink
+        - light.living_room_lamps
+        - light.dining_room_table
+      data:
+       color_temp: 447
+       brightness_pct: 60
+    - service: light.turn_on
+      entity_id:
+        - light.media_center_lighting
+      data:
+       effect: random
+       brightness_pct: 75
+    - service: light.turn_on
+      entity_id:
+        - light.kitchen_cabinets
+      data:
+       brightness_pct: 1
+    - service: light.turn_on
+      entity_id:
+        - light.hallway_light
+      data:
+       brightness_pct: 25
+    - service: light.turn_on
+      entity_id:
+        - light.front_porch
+        - light.back_door
+        - light.garage_light
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
+        - light.globe
+      data:
+       color_temp: 366
+       brightness_pct: 20
+
+
+        ##########################################################
+        ## USER1 Home Turn on Lights during Rain
+        ##########################################################
+
+- alias: Location - USER1 Home Turn on Lights during Rain
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker.USER1s_iphone
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER1_away
+      state: 'on'
+    - condition: state
+      entity_id: sensor.dark_sky_precip
+      state: 'rain'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.living_room_lamps
+      data:
+       color_temp: 447
+       brightness_pct: 25
+    - service: light.turn_on
+      entity_id:
+        - light.media_center_lighting
+      data:
+       effect: random
+       brightness_pct: 75
+    - service: light.turn_on
+      entity_id:
+        - light.kitchen_cabinets
+        - light.kitchen_sink
+        - light.dining_room_table
+        - light.hallway_light
+      data:
+       brightness_pct: 1
+    - service: light.turn_on
+      entity_id:
+        - light.globe
+      data:
+       color_temp: 366
+       brightness_pct: 20
+
+        ##########################################################
+        ## USER1 Home Reset Front Porch Brightness
+        ##########################################################
+
+- alias: Location - USER1 Home Reset Front Porch Brightness
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER1_away
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: input_select.holiday
+      state: 'None'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.front_porch
+      data:
+        brightness_pct: 40
+        transition: 120
+
+        ##########################################################
+        ## USER1 Home Reset Back Door Brightness
+        ##########################################################
+
+- alias: Location - USER1 Home Reset Back Door Brightness
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER1_away
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.back_door
+      data:
+        brightness_pct: 1
+        transition: 120
+
+        ##########################################################
+        ## USER1 Home Turn Dim Garage Light after 16 Mins
+        ##########################################################
+
+- alias: Location - USER1 Home Dim Garage Light after 16 Mins
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER1_away
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 6
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.garage_light
+      data:
+       brightness_pct: 1
+
+        ##########################################################
+        ## USER2 Home Turn on Lights
+        ##########################################################
+
+- alias: Location - USER2 Home Turn on Lights
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker.USER2s_iphone
+      #from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER2_away
+      state: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.kitchen_sink
+        - light.living_room_lamps
+        - light.dining_room_table
+      data:
+       color_temp: 447
+       brightness_pct: 60
+    - service: light.turn_on
+      entity_id:
+        - light.media_center_lighting
+      data:
+       effect: random
+       brightness_pct: 75
+    - service: light.turn_on
+      entity_id:
+        - light.kitchen_cabinets
+      data:
+       brightness_pct: 1
+    - service: light.turn_on
+      entity_id:
+        - light.hallway_light
+      data:
+       brightness_pct: 25
+    - service: light.turn_on
+      entity_id:
+        - light.front_porch
+        - light.back_door
+        - light.garage_light
+      data:
+       brightness_pct: 100
+    - service: light.turn_on
+      entity_id:
+        - light.globe
+      data:
+       color_temp: 366
+       brightness_pct: 20
+
+        ##########################################################
+        ## USER2 Home from Work Lights
+        ##########################################################
+
+- alias: Location - USER2 Home from Work Lights
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker.USER2s_iphone
+      #from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER2_away
+      state: 'on'
+    - condition: time
+      after: '15:45'
+      before: '17:30'
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.bathroom_lights
+      data:
+       brightness_pct: 25
+    - service: light.turn_on
+      entity_id:
+        - light.bedroom_lights
+      data:
+       transition: 90
+       brightness_pct: 50
+
+        ##########################################################
+        ## USER2 Home Turn on Lights during Rain
+        ##########################################################
+
+- alias: Location - USER2 Home Turn on Lights during Rain
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker.USER2s_iphone
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.USER2_away
+      state: 'on'
+    - condition: state
+      entity_id: sensor.dark_sky_precip
+      state: 'rain'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.living_room_lamps
+      data:
+       color_temp: 447
+       brightness_pct: 25
+    - service: light.turn_on
+      entity_id:
+        - light.media_center_lighting
+      data:
+       effect: random
+       brightness_pct: 75
+    - service: light.turn_on
+      entity_id:
+        - light.kitchen_cabinets
+        - light.kitchen_sink
+        - light.dining_room_table
+        - light.hallway_light
+      data:
+       brightness_pct: 1
+    - service: light.turn_on
+      entity_id:
+        - light.globe
+      data:
+       color_temp: 366
+       brightness_pct: 20
+
+        ##########################################################
+        ## USER2 Home Reset Front Porch Brightness
+        ##########################################################
+
+- alias: Location - USER2 Home Reset Front Porch Brightness
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER2_away
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: input_select.holiday
+      state: 'None'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.front_porch
+      data:
+        brightness_pct: 40
+        transition: 120
+
+        ##########################################################
+        ## USER2 Home Reset Back Door Brightness
+        ##########################################################
+
+- alias: Location - USER2 Home Reset Back Door Brightness
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER2_away
+      from: 'on'
+      to: 'off'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.back_door
+      data:
+        brightness_pct: 1
+        transition: 120
+
+        ##########################################################
+        ## USER2 Home Dim Garage Light after 16 Mins
+        ##########################################################
+
+- alias: Location - USER2 Home Dim Garage Light after 16 Mins
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER2_away
+      from: 'on'
+      to: 'off'
+      for:
+        hours: 0
+        minutes: 6
+        seconds: 0
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.garage_light
+      data:
+       brightness_pct: 1
+
+        ##########################################################
+        ## USER1 Away Shut off Office
+        ##########################################################
+
+- alias: Location - USER1 Away Shut off Office
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER1_away
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.air_purifier
+    - service: fan.turn_off
+      entity_id:
+        - fan.office_fan
+    - service: light.turn_off
+      entity_id:
+        - light.USER1_office_lights
+
+        ##########################################################
+        ## USER2 Away Shut off Office
+        ##########################################################
+
+- alias: Location - USER2 Away Shut off Office
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER2_away
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.USER2_s_office_ceiling
+
+        ##########################################################
+        ## Close Garage Door when USER1 Leaves
+        ##########################################################
+
+- alias: Location - Close Garage when USER1 Leaves
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER1_away
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_auto_garage
+      state: 'off'
+
+  action:
+    - service: cover.close_cover
+      entity_id: cover.garage_door
+
+        ##########################################################
+        ## Close Garage Door when USER2 Leaves
+        ##########################################################
+
+- alias: Location - Close Garage when USER2 Leaves
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER2_away
+      from: 'off'
+      to: 'on'
+
+  condition:
+    - condition: state
+      entity_id: input_boolean.disable_auto_garage
+      state: 'off'
+
+  action:
+    - service: cover.close_cover
+      entity_id: cover.garage_door
+
+        ##########################################################
+        ## Lock Back Door when USER2 Leaves in the Morning
+        ##########################################################
+
+- alias: Location - Lock Back Door when USER2 Leaves
+
+  trigger:
+     - platform: state
+       entity_id: device_tracker.USER2s_iphone
+       from: 'home'
+       to: 'not_home'
+
+  condition:
+    - condition: time
+      after: '05:00'
+      before: '07:00'
+    - condition: state
+      entity_id: input_boolean.disable_lock_unlock_doors
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.back_door_opened
+      state: 'off'
+    - condition: state
+      entity_id: lock.back_door
+      state: 'unlocked'
+
+  action:
+    - service: lock.lock
+      entity_id: lock.back_door
+
+        ##########################################################
+        ## Turn off Lights when USER2 Leaves
+        ##########################################################
+
+- alias: Location - Turn off Lights when USER2 Leaves
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker.USER2s_iphone
+      from: 'home'
+      to: 'not_home'
+
+  condition:
+    - condition: time
+      after: '06:00'
+      before: '07:30'
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+    - condition: state
+      entity_id: group.friends_and_family
+      state: 'not_home'
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+
+  action:
+    - service: light.turn_off
+      entity_id:
+        - group.interior_lights
+        - light.back_door
+        - light.garage_light
+
+        ##########################################################
+        ## Turn on Outdoor Lighting when Home
+        ##########################################################
+
+- alias: Location - Turn on Outdoor Lighting when Home
+
+  trigger:
+    - platform: state
+      entity_id: group.household
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.disable_home_away
+        state: 'off'
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: input_boolean.USER1_away
+            state: 'on'
+          - condition: state
+            entity_id: input_boolean.USER2_away
+            state: 'on'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.backyard_patio_lighting
+        - switch.lower_backyard_lighting
+    - service: light.turn_on
+      entity_id:
+        - light.backyard_patio
+      data:
+        brightness_pct: 1
+
+        ##########################################################
+        ## Turn on Backyard Lighting when Friends Visiting
+        ##########################################################
+
+- alias: Location - Turn on Backyard Lighting when Friends Visiting
+
+  trigger:
+    - platform: state
+      entity_id: group.friends_and_family
+      from: 'not_home'
+      to: 'home'
+
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_home_away
+      state: 'off'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.backyard_patio_lighting
+        - switch.lower_backyard_lighting
+    - service: light.turn_on
+      entity_id:
+        - light.backyard_patio
+        - light.backyard_deck
+      data:
+        brightness_pct: 1
+
+        ##########################################################
+        ## Set USER1 Away Driving
+        ##########################################################
+
+- alias: Location - Set USER1 Away Driving
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker.USER1s_iphone
+      from: 'home'
+      to: 'not_home'
+
+  condition:
+    - condition: state
+      entity_id: cover.garage_door
+      state: 'open'
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.USER1_away_driving
+
+        ##########################################################
+        ## Set USER1 Away after 1 Min
+        ##########################################################
+
+- alias: Location - Set USER1 Away after 1 Mins
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker.USER1s_iphone
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id:
+        - input_boolean.USER1_away
+        - input_boolean.USER1_greeting
+
+        ##########################################################
+        ## Set USER1 Home after 10 Mins
+        ##########################################################
+
+- alias: Location - Set USER1 Home after 10 Mins
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker.USER1s_iphone
+      from: 'not_home'
+      to: 'home'
+      for:
+        hours: 0
+        minutes: 10
+        seconds: 0
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.USER1_away
+        - input_boolean.USER1_away_driving
+        - input_boolean.USER1_greeting
+
+        ##########################################################
+        ## Set USER2 Away Driving
+        ##########################################################
+
+- alias: Location - Set USER2 Away Driving
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker.USER2s_iphone
+      from: 'home'
+      to: 'not_home'
+
+  condition:
+    - condition: state
+      entity_id: cover.garage_door
+      state: 'open'
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.USER2_away_driving
+
+        ##########################################################
+        ## Set USER2 Away after 1 Min
+        ##########################################################
+
+- alias: Location - Set USER2 Away after 1 Mins
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker.USER2s_iphone
+      from: 'home'
+      to: 'not_home'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 0
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id:
+        - input_boolean.USER2_away
+        - input_boolean.USER2_greeting
+
+        ##########################################################
+        ## Set USER2 Home after 10 Mins
+        ##########################################################
+
+- alias: Location - Set USER2 Home after 10 Mins
+
+  trigger:
+    - platform: state
+      entity_id: device_tracker.USER2s_iphone
+      from: 'not_home'
+      to: 'home'
+      for:
+        hours: 0
+        minutes: 10
+        seconds: 0
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.USER2_away
+        - input_boolean.USER2_away_driving
+        - input_boolean.USER2_greeting
+
+        ##########################################################
+        ## Manually Set USER1 Home
+        ##########################################################
+
+- alias: Location - Manually Set USER1 Home
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER1_home
+      from: 'off'
+      to: 'on'
+
+  action:
+    - service: device_tracker.see
+      data:
+        dev_id: USER1s_iphone
+        location_name: 'home'
+
+        ##########################################################
+        ## Reset Manually Set USER1 Home Switch
+        ##########################################################
+
+- alias: Location - Reset USER1 Home
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER1_home
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 30
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.USER1_home
+
+        ##########################################################
+        ## Manually Set USER1 Away
+        ##########################################################
+
+- alias: Location - Manually Set USER1 Away
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.manual_USER1_away
+      from: 'off'
+      to: 'on'
+
+  action:
+    - service: device_tracker.see
+      data:
+        dev_id: USER1s_iphone
+        location_name: 'not_home'
+
+        ##########################################################
+        ## Reset Manually Set USER1 Away Switch
+        ##########################################################
+
+- alias: Location - Reset Manually Set USER1 Away
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.manual_USER1_away
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 30
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.manual_USER1_away
+
+        ##########################################################
+        ## Manually Set USER2 Home
+        ##########################################################
+
+- alias: Location - Manually Set USER2 Home
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER2_home
+      from: 'off'
+      to: 'on'
+
+  action:
+    - service: device_tracker.see
+      data:
+        dev_id: USER2s_iphone
+        location_name: 'home'
+
+        ##########################################################
+        ## Reset Manually Set USER2 Home Switch
+        ##########################################################
+
+- alias: Location - Reset USER2 Home
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.USER2_home
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 30
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.USER2_home
+
+        ##########################################################
+        ## Manually Set USER2 Away
+        ##########################################################
+
+- alias: Location - Manually Set USER2 Away
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.manual_USER2_away
+      from: 'off'
+      to: 'on'
+
+  action:
+    - service: device_tracker.see
+      data:
+        dev_id: USER2s_iphone
+        location_name: 'not_home'
+
+        ##########################################################
+        ## Reset Manually Set USER2 Away Switch
+        ##########################################################
+
+- alias: Location - Reset USER2 Home
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.manual_USER2_away
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 30
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.manual_USER2_away

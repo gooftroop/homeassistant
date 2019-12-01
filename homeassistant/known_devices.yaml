@@ -1,0 +1,336 @@
+
+harmonyhub:
+  hide_if_away: false
+  icon:
+  mac: 00:04:20:F4:0B:78
+  name: HarmonyHub
+  picture:
+  track: true
+
+kohlergen:
+  hide_if_away: false
+  icon:
+  mac: 00:14:6F:21:DE:F6
+  name: KohlerGen
+  picture:
+  track: true
+
+philips_hue:
+  hide_if_away: false
+  icon:
+  mac: 00:17:88:66:23:D3
+  name: Philips-hue
+  picture:
+  track: true
+
+rx_v675_a692d0:
+  hide_if_away: false
+  icon:
+  mac: 00:A0:DE:A6:92:D0
+  name: RX-V675 A692D0
+  picture:
+  track: true
+
+new_host_1:
+  hide_if_away: false
+  icon:
+  mac: 18:B4:30:3A:21:35
+  name: new-host-1
+  picture:
+  track: true
+
+new_host_2:
+  hide_if_away: false
+  icon:
+  mac: 18:B4:30:9C:CD:C2
+  name: new-host-2
+  picture:
+  track: true
+
+09aa01ac171704wb:
+  hide_if_away: false
+  icon:
+  mac: 18:B4:30:C2:CB:84
+  name: 09AA01AC171704WB
+  picture:
+  track: true
+
+09aa01ac20170946:
+  hide_if_away: false
+  icon:
+  mac: 18:B4:30:C4:54:2B
+  name: 09AA01AC20170946
+  picture:
+  track: true
+
+hubv3_3011164780:
+  hide_if_away: false
+  icon:
+  mac: 28:6D:97:7A:53:A5
+  name: hubv3-3011164780
+  picture:
+  track: true
+
+launchpad:
+  hide_if_away: false
+  icon:
+  mac: 38:C9:86:2F:E5:13
+  name: Launchpad
+  picture:
+  track: true
+
+new_host_3:
+  hide_if_away: false
+  icon:
+  mac: 3C:28:6D:15:1C:0C
+  name: new-host-3
+  picture:
+  track: true
+
+alys_iphone:
+  hide_if_away: false
+  icon:
+  mac: 5C:1D:D9:AF:15:52
+  name: Alys-iPhone
+  picture:
+  track: true
+
+amazon_383cca1ad:
+  hide_if_away: false
+  icon:
+  mac: 60:6D:3C:01:EE:51
+  name: amazon-383cca1ad
+  picture:
+  track: true
+
+family_room:
+  hide_if_away: false
+  icon:
+  mac: 70:4F:B8:81:08:4B
+  name: Family-Room
+  picture:
+  track: true
+
+family_room_2:
+  hide_if_away: false
+  icon:
+  mac: 70:4F:B8:81:08:4D
+  name: Family-Room
+  picture:
+  track: true
+
+astronaut:
+  hide_if_away: false
+  icon:
+  mac: 8C:85:90:28:F3:B6
+  name: Astronaut
+  picture:
+  track: true
+
+chromecast:
+  hide_if_away: false
+  icon:
+  mac: A4:77:33:54:18:40
+  name: Chromecast
+  picture:
+  track: true
+
+apple_tv:
+  hide_if_away: false
+  icon:
+  mac: AC:BC:32:63:46:78
+  name: Apple-TV
+  picture:
+  track: true
+
+xboxone:
+  hide_if_away: false
+  icon:
+  mac: C0:33:5E:62:33:58
+  name: XboxOne
+  picture:
+  track: true
+
+amazon_fb909ba79:
+  hide_if_away: false
+  icon:
+  mac: CC:F7:35:F7:E7:73
+  name: amazon-fb909ba79
+  picture:
+  track: true
+
+lutron_01f278c8:
+  hide_if_away: false
+  icon:
+  mac: E8:EB:11:CE:6C:80
+  name: lutron-01f278c8
+  picture:
+  track: true
+
+hpfef7ae:
+  hide_if_away: false
+  icon:
+  mac: EC:B1:D7:FE:F7:B0
+  name: HPFEF7AE
+  picture:
+  track: true
+
+new_host_4:
+  hide_if_away: false
+  icon:
+  mac: F8:04:2E:02:B1:34
+  name: new-host-4
+  picture:
+  track: true
+
+nanit_n151bwz18456fw:
+  hide_if_away: false
+  icon:
+  mac: B8:D7:AF:33:56:FD
+  name: Nanit N151BWZ18456FW
+  picture:
+  track: true
+
+wlt041420:
+  hide_if_away: false
+  icon:
+  mac: F0:18:98:65:D4:7B
+  name: WLT041420
+  picture:
+  track: true
+
+lutron_01f30a12:
+  hide_if_away: false
+  icon:
+  mac: C8:FD:19:F2:77:57
+  name: lutron-01f30a12
+  picture:
+  track: true
+
+galaxy_s9:
+  hide_if_away: false
+  icon:
+  mac: 00:9D:6B:3C:5E:9E
+  name: Galaxy-S9
+  picture:
+  track: true
+
+einstein:
+  hide_if_away: false
+  icon:
+  mac: B4:AE:2B:E3:22:68
+  name: Einstein
+  picture:
+  track: true
+
+julias_iphone:
+  hide_if_away: false
+  icon:
+  mac: E0:33:8E:69:84:99
+  name: Julias-iPhone
+  picture:
+  track: true
+
+'192_168_1_138':
+  hide_if_away: false
+  icon:
+  mac: 00:11:32:1B:91:75
+  name: 192.168.1.138
+  picture:
+  track: true
+
+alysonsplewatch:
+  hide_if_away: false
+  icon:
+  mac: F8:6F:C1:C3:60:47
+  name: AlysonspleWatch
+  picture:
+  track: true
+
+owlet_ccc0791a0043:
+  hide_if_away: false
+  icon:
+  mac: CC:C0:79:1A:00:43
+  name: Owlet-ccc0791a0043
+  picture:
+  track: true
+
+alysons_ipad:
+  hide_if_away: false
+  icon:
+  mac: 2C:1F:23:2B:EF:B9
+  name: Alysons-iPad
+  picture:
+  track: true
+
+alex_moran:
+  hide_if_away: false
+  icon:
+  mac: 4C:74:BF:AF:30:E2
+  name: Alex-Moran
+  picture:
+  track: true
+
+new_host_5:
+  hide_if_away: false
+  icon:
+  mac: 40:4E:36:D4:E2:07
+  name: new-host-5
+  picture:
+  track: true
+
+ryans_iphone:
+  hide_if_away: false
+  icon:
+  mac: B0:19:C6:DC:74:39
+  name: Ryans-iPhone
+  picture:
+  track: true
+
+wlt041261:
+  hide_if_away: false
+  icon:
+  mac: 8C:85:90:21:9D:61
+  name: WLT041261
+  picture:
+  track: true
+
+hubv3_3011164780_2:
+  hide_if_away: false
+  icon:
+  mac: 28:6D:97:7A:53:A4
+  name: hubv3-3011164780
+  picture:
+  track: true
+
+new_host_4_2:
+  hide_if_away: false
+  icon:
+  mac: 40:A5:EF:18:FE:00
+  name: new-host-4
+  picture:
+  track: true
+
+new_host_6:
+  hide_if_away: false
+  icon:
+  mac: 40:A5:EF:18:FE:01
+  name: new-host-6
+  picture:
+  track: true
+
+07aa01ad481708k6:
+  hide_if_away: false
+  icon:
+  mac: 18:B4:30:3F:C6:71
+  name: 07AA01AD481708K6
+  picture:
+  track: true
+
+iphone_2:
+  hide_if_away: false
+  icon:
+  mac: 34:08:BC:CA:29:E9
+  name: iPhone-2
+  picture:
+  track: true

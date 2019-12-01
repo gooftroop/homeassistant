@@ -1,0 +1,27 @@
+#################################################################
+## Input Select
+#################################################################
+
+  living_room_remote:
+    name: Media Center Remote
+    options:
+      - PowerOff
+      - Watch Apple TV
+      - Play Xbox One
+      - Watch Verizon Fios
+      - Watch Blueray
+    icon: mdi:remote
+
+  thermostat_mode:
+    name: Set Thermostat Mode
+    options:
+      - None
+      - Clear Holds
+      - Home
+      - Away
+      - Sleep
+      - Upstairs
+      - Guest
+      - Fireplace
+    initial: None
+    icon: mdi:thermostat-box
